@@ -10,7 +10,15 @@ function WelcomePage(props:Props){
     return(
         <ExternalPage>
             <Header>
+                <LogoWrapper>Росреестр</LogoWrapper>
+                <AuthorizationWrapper>
+                    <LoginLink>
 
+                    </LoginLink>
+                    <RegistrationLink>
+
+                    </RegistrationLink>
+                </AuthorizationWrapper>
             </Header>
             <MainContent>
 
