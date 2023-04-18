@@ -1,9 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Welcome from "./pages/welcome";
-import {Route, Routes} from "react-router-dom";
-import LoginPage from "./pages/login";
+import Welcome from "./pages/common/welcome";
+import {Navigate, Route, Routes} from "react-router-dom";
+import LoginPage from "./pages/authorization/login";
+import SignupPage from "./pages/authorization/signup";
+import ProfileSettingsPage from "./pages/profile/settings";
+import WorkspacePage from "./pages/common/workspace";
 
 
 
@@ -17,21 +20,24 @@ function App() {
             />
             <Route
                 path={"/login"}
-                element={<Welcome/>}
+                element={<LoginPage/>}
             />
             <Route
                 path={"/signup"}
-                element={<Welcome/>}
+                element={<SignupPage/>}
             />
             <Route
                 path={"profile/settings"}
-                element={<Welcome/>}
+                element={<ProfileSettingsPage/>}
             />
             <Route
                 path={"/workspace"}
-                element={<Welcome/>}
+                element={<WorkspacePage/>}
             />
-
+            <Route
+                path={"/"}
+                element={<Navigate to={"/welcome"}/>}
+            />
         </Routes>
    </>
   );
