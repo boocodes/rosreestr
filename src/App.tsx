@@ -15,6 +15,22 @@ function App() {
                 path={"/welcome"}
                 element={<Welcome/>}
             />
+            <Route
+                path={"/login"}
+                element={<Welcome/>}
+            />
+            <Route
+                path={"/signup"}
+                element={<Welcome/>}
+            />
+            <Route
+                path={"profile/settings"}
+                element={<Welcome/>}
+            />
+            <Route
+                path={"/workspace"}
+                element={<Welcome/>}
+            />
 
         </Routes>
    </>
