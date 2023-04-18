@@ -1,7 +1,22 @@
-body {
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-code {
-
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./../public/fonts/Gilroy-Medium.woff2') format('woff2');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../public/fonts/Gilroy-Regular.woff2') format('woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../public/fonts/Gilroy-Semibold.woff2') format('woff2');
+    font-weight: 600;
 }
