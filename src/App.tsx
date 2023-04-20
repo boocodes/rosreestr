@@ -4,7 +4,7 @@ import './App.css';
 import Welcome from "./pages/common/welcome";
 import {Navigate, Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/authorization/login";
-import SignupPage from "./pages/authorization/signup";
+import RegistrationPage from "./pages/authorization/signup";
 import ProfileSettingsPage from "./pages/profile/settings";
 import WorkspacePage from "./pages/common/workspace";
 
@@ -24,7 +24,7 @@ function App() {
             />
             <Route
                 path={"/signup"}
-                element={<SignupPage/>}
+                element={<RegistrationPage/>}
             />
             <Route
                 path={"profile/settings"}

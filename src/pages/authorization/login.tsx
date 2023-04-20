@@ -1,32 +1,70 @@
+
 import styled from "styled-components";
 import Header from "../../ui/header/header";
 import Footer from "../../ui/footer/footer";
+import {useState, useRef} from "react";
+import {useNavigate} from "react-router-dom";
+import {fetchMethod, loginUserMethod} from "../../utils/fetchMethod";
+
+
 
 
 interface Props{
 
 }
 
-function LoginPage(props:Props){
-    return(
-        <ExternalWrapper>
-            <GoBackWrapper>
-                <GoBackButton><a href={"/welcome"}>Вернуться</a></GoBackButton>
-            </GoBackWrapper>
-            <LoginFormWrapper>
-                <LoginForm method={"POST"} >
-                    <LastNameAndFirstNameInputWrapper>
-                        <input placeholder={"Имя"} type={"text"} />
-                        <input placeholder={"Фамилия"} type={"text"} />
-                    </LastNameAndFirstNameInputWrapper>
-                    <input placeholder={"Дата рождения"} type={"date"} />
-                    <SubmitButtonWrapper>
-                        <SubmitButton type={"submit"} value={"Отправить"}/>
-                    </SubmitButtonWrapper>
-                </LoginForm>
-            </LoginFormWrapper>
-        </ExternalWrapper>
-    )
+interface ILoginResponseSuccess{
+    "message": {
+        firstname: string;
+        lastname: string;
+        mail: string;
+        password: string;
+        created: string;
+        updated: string;
+        login: string;
+        workspace_id: string;
+        user_id: string;
+    }
+}
+interface ILoginFail{
+    "message": string;
+}
+
+function LoginPage(props:Props) {
+    const navigate = useNavigate();
+
+
+    const regForm = useRef<HTMLFormElement>(null);
+
+    async function submitForm(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const object = {
+            // @ts-ignore
+            login: regForm.current?.children[0].value,
+            // @ts-ignore
+            password: regForm.current?.children[1].value,
+        }
+
+        loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate);
+    }
+
+
+        return (
+            <ExternalWrapper>
+                <GoBackWrapper>
+                    <GoBackButton><a href={"/welcome"}>Вернуться</a></GoBackButton>
+                </GoBackWrapper>
+                <LoginFormWrapper>
+                    <LoginForm ref={regForm} onSubmit={submitForm}>
+                        <input placeholder={"Имя пользователя"} type={"text"}/>
+                        <input placeholder={"Пароль"} type={"text"}/>
+                        <SubmitButtonWrapper>
+                            <SubmitButton type={"submit"} value={"Отправить"}/>
+                        </SubmitButtonWrapper>
+                    </LoginForm>
+                </LoginFormWrapper>
+            </ExternalWrapper>
+        )
 }
 
 const ExternalWrapper = styled.div`

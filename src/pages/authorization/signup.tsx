@@ -7,7 +7,7 @@ interface Props{
 
 }
 
-function LoginPage(props:Props){
+function RegistrationPage(props:Props){
     return(
         <ExternalWrapper>
             <GoBackWrapper>
@@ -15,8 +15,11 @@ function LoginPage(props:Props){
             </GoBackWrapper>
             <LoginFormWrapper>
                 <LoginForm method={"POST"} >
-                    <input placeholder={"Имя пользователя"} type={"text"} />
-                    <input placeholder={"Пароль"} type={"text"} />
+                    <LastNameAndFirstNameInputWrapper>
+                        <input placeholder={"Имя"} type={"text"} />
+                        <input placeholder={"Фамилия"} type={"text"} />
+                    </LastNameAndFirstNameInputWrapper>
+                    <input placeholder={"Дата рождения"} type={"date"} />
                     <SubmitButtonWrapper>
                         <SubmitButton type={"submit"} value={"Отправить"}/>
                     </SubmitButtonWrapper>
@@ -81,4 +84,4 @@ const SubmitButton = styled.input`
     font-size: 18px;
 `
 
-export default LoginPage;
+export default RegistrationPage;
