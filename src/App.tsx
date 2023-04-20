@@ -7,36 +7,45 @@ import LoginPage from "./pages/authorization/login";
 import RegistrationPage from "./pages/authorization/signup";
 import ProfileSettingsPage from "./pages/profile/settings";
 import WorkspacePage from "./pages/common/workspace";
-
-
+import {useAppSelector} from "./hooks/useAppSelector";
+import {selectUserAuthFlag} from "./redux/reducers/user/selector";
+import WelcomePage from "./pages/common/welcome";
+import ProfilePage from "./pages/profile/profile";
 
 function App() {
+
+    const userAuthFlag:boolean = useAppSelector(selectUserAuthFlag);
+
   return (
    <>
         <Routes>
             <Route
                 path={"/welcome"}
-                element={<Welcome/>}
+                element={userAuthFlag ? <Navigate to={"/workspace"}/> : <WelcomePage/> }
             />
             <Route
                 path={"/login"}
-                element={<LoginPage/>}
+                element={userAuthFlag ? <Navigate to={"/workspace"}/> : <LoginPage/>}
             />
             <Route
                 path={"/signup"}
-                element={<RegistrationPage/>}
+                element={userAuthFlag ? <Navigate to={"/workspace"}/> : <RegistrationPage/>}
             />
             <Route
                 path={"profile/settings"}
-                element={<ProfileSettingsPage/>}
+                element={userAuthFlag ? <ProfileSettingsPage/> : <Navigate to={"/login"}/>}
             />
             <Route
                 path={"/workspace"}
-                element={<WorkspacePage/>}
+                element={userAuthFlag ? <WorkspacePage/> : <Navigate to={"/login"}/>}
             />
             <Route
                 path={"/"}
                 element={<Navigate to={"/welcome"}/>}
+            />
+            <Route
+                path={"/profile"}
+                element={userAuthFlag ? <ProfilePage/> : <Navigate to={"/login"}/>}
             />
         </Routes>
    </>

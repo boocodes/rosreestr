@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import ButtonLink from "../linkButton/button";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectUserAuthFlag, selectUserData} from "../../redux/reducers/user/selector";
+import LoginCase from "./LoginCase";
+import NotLoginCase from "./notLoginCase";
 
 interface Props{
 
@@ -7,21 +11,21 @@ interface Props{
 
 
 function Header(props:Props){
+    const userAuthFlag:boolean = useAppSelector(selectUserAuthFlag);
+
     return(
         <Root>
             <LogoWrapper>
                 <LogoText>
-                    Росреестр
+                    <a href={"/welcome"}>Росреестр</a>
                 </LogoText>
             </LogoWrapper>
-            <AuthorizationWrapper>
-                <LoginLinkWrapper>
-                    <ButtonLink link={'./login'} linkText={'Авторизация'}/>
-                </LoginLinkWrapper>
-                <RegistrationLinkWrapper>
-                    <ButtonLink link={'./signup'} linkText={'Регистрация'}/>
-                </RegistrationLinkWrapper>
-            </AuthorizationWrapper>
+            {
+                userAuthFlag ?
+                    <LoginCase/>
+                    :
+                    <NotLoginCase/>
+            }
         </Root>
     )
 }
@@ -40,15 +44,6 @@ const LogoText = styled.h1`
 
 `
 
-const AuthorizationWrapper = styled.div`
-    display: flex;
-    align-items: center;
-`
-const LoginLinkWrapper = styled.div`
-    margin-right: 20px;    
-`
-const RegistrationLinkWrapper = styled.div`
 
-`
 
 export default Header;
