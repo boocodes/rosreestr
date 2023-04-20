@@ -16,10 +16,23 @@ interface IPromiseType {
     }
 }
 
-interface IPromiseArgBodyData{
+interface IPromiseLoginArgBodyData{
     login: string;
     password: string;
 }
+
+interface IPromiseRegistrateArgBodyData{
+    firstname: string;
+    lastname: string;
+    mail: string;
+    created: string;
+    updated: string;
+    login: string;
+    workspace_id: string;
+    user_id: string;
+    password: string,
+}
+
 
 interface ILoginResponseSuccess {
     message: string
@@ -39,7 +52,7 @@ interface ILoginResponseFail {
 }
 
 
-export async function fetchMethod(method:string, body:IPromiseArgBodyData, url:string):Promise<Response>{
+export async function fetchMethod(method:string, body:any, url:string):Promise<Response>{
     const response = await fetch(url, {
         method,
         mode: 'cors',
@@ -54,7 +67,7 @@ interface IChangeUserAuthFlag {
 
 export async function loginUserMethod (
     method:string,
-    body:IPromiseArgBodyData,
+    body:IPromiseLoginArgBodyData,
     url:string,
     navigate:NavigateFunction,
     dispatch:ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
@@ -74,6 +87,24 @@ export async function loginUserMethod (
           else{
               dispatch(changeUserAuthFlag({authFlag: false}));
           }
+        })
+}
+
+export async function registrateUserMethod(
+    method: string,
+    body: IPromiseRegistrateArgBodyData,
+    url: string,
+    navigate: NavigateFunction,
+    ){
+    await  fetchMethod(method, body, url)
+        .then((data)=>{
+            console.log(data);
+            if(data.ok){
+                navigate("/login");
+            }
+            else{
+                return;
+            }
         })
 }
 
