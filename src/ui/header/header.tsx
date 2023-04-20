@@ -17,7 +17,7 @@ function Header(props:Props){
         <Root>
             <LogoWrapper>
                 <LogoText>
-                    <a href={"/welcome"}>Росреестр</a>
+                    <a href={"/workspace"}>Росреестр</a>
                 </LogoText>
             </LogoWrapper>
             {
