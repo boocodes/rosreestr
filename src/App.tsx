@@ -6,7 +6,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/authorization/login";
 import RegistrationPage from "./pages/authorization/signup";
 import ProfileSettingsPage from "./pages/profile/settings";
-import WorkspacePage from "./pages/common/workspace";
+import WorkspacePage from "./pages/common/workspace/workspace";
 import {useAppSelector} from "./hooks/useAppSelector";
 import {selectUserAuthFlag} from "./redux/reducers/user/selector";
 import WelcomePage from "./pages/common/welcome";
