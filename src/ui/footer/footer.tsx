@@ -8,7 +8,7 @@ interface Props{
 function Footer(props:Props){
     return(
         <Root>
-            Подвал сайта
+            Автор - Никита Фелькер
         </Root>
     )
 }
