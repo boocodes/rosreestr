@@ -37,6 +37,7 @@ const UserCabinetLinkWrapper = styled.div`
 `
 const UserLoginText = styled.p`
    font-size: 20px;
+   color: white;
    font-family: 'Gilroy';
 `
 const Overlay = styled.div`

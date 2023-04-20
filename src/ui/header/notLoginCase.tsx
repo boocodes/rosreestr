@@ -26,6 +26,7 @@ const AuthorizationWrapper = styled.div`
 `
 const LoginLinkWrapper = styled.div`
     margin-right: 20px;    
+    color: white;
 `
 const RegistrationLinkWrapper = styled.div`
 

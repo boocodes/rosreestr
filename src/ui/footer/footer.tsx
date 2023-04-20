@@ -14,6 +14,9 @@ function Footer(props:Props){
 }
 
 const Root = styled.div`
+    width: 60%;
+    position: relative;
+    margin: 0 auto;
     font-family: 'Gilroy';
     border-top: 1px solid #DDDDDD;
     padding: 70px;

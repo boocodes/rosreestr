@@ -17,7 +17,7 @@ function Header(props:Props){
         <Root>
             <LogoWrapper>
                 <LogoText>
-                    <a href={"/workspace"}>Росреестр</a>
+                    <LogoTextLink href={"/workspace"}>Росреестр</LogoTextLink>
                 </LogoText>
             </LogoWrapper>
             {
@@ -30,18 +30,24 @@ function Header(props:Props){
     )
 }
 const Root = styled.div`
+    background-color: #24292f;
     padding: 40px 70px 50px 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #DDDDDD;
+    font-family: 'Gilroy';
 `
 
 const LogoWrapper = styled.div`
 
 `
 const LogoText = styled.h1`
-
+    
+`
+const LogoTextLink = styled.a`
+    text-decoration: none;
+    color: white;
 `
 
 
