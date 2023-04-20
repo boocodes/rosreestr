@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Header from "../../ui/header/header";
 import Footer from "../../ui/footer/footer";
+import {useRef} from "react";
+import {registrateUserMethod} from "../../utils/fetchMethod";
+import {useNavigate} from "react-router-dom";
 
 
 interface Props{
@@ -8,18 +11,56 @@ interface Props{
 }
 
 function RegistrationPage(props:Props){
+    const navigate = useNavigate();
+    const regForm = useRef<HTMLFormElement>(null);
+
+    function submitForm(event:React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
+
+        const object = {
+            // @ts-ignore
+            firstname: regForm.current?.children[0].children[0].value,
+            //@ts-ignore
+            lastname: regForm.current?.children[0].children[1].value,
+            // @ts-ignore
+            login: regForm.current?.children[1].value,
+            // @ts-ignore
+            mail: regForm.current?.children[2].value,
+            // @ts-ignore
+            created: regForm.current?.children[3].value,
+            // @ts-ignore
+            updated: regForm.current?.children[4].value,
+            // @ts-ignore
+            workspace_id: regForm.current?.children[5].value,
+            // @ts-ignore
+            user_id: regForm.current?.children[6].value,
+            // @ts-ignore
+            password: regForm.current?.children[7].value,
+        }
+        //@ts-ignore
+        console.log(object);
+        registrateUserMethod("POST", object, "https://rosreestr/vendor/api/user/registration.php", navigate);
+    }
+
+
     return(
         <ExternalWrapper>
             <GoBackWrapper>
                 <GoBackButton><a href={"/welcome"}>Вернуться</a></GoBackButton>
             </GoBackWrapper>
             <LoginFormWrapper>
-                <LoginForm method={"POST"} >
+                <LoginForm ref={regForm} method={"POST"} onSubmit={submitForm} >
                     <LastNameAndFirstNameInputWrapper>
                         <input placeholder={"Имя"} type={"text"} />
                         <input placeholder={"Фамилия"} type={"text"} />
                     </LastNameAndFirstNameInputWrapper>
-                    <input placeholder={"Дата рождения"} type={"date"} />
+                    <input placeholder={"Имя пользователя"} type={"text"} />
+                    <input placeholder={"Электронная почта"} type={"email"} />
+                    <input placeholder={"Создан (дата)"} type={"text"} />
+                    <input placeholder={"Обновлен (дата)"} type={"text"} />
+                    <input placeholder={"Номер рабочего пространства"} type={"text"} />
+                    <input placeholder={"Номер пользователя"} type={"text"}/>
+                    <input placeholder={"Пароль"} type={"text"}/>
                     <SubmitButtonWrapper>
                         <SubmitButton type={"submit"} value={"Отправить"}/>
                     </SubmitButtonWrapper>

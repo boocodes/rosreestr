@@ -14,7 +14,7 @@ interface IChangeUserData {
     updated?: string;
     created?: string;
     user_id?: string;
-    workspaces_id?: string;
+    workspace_id?: string;
     lastname?: string;
     firstname?: string;
 }
@@ -26,7 +26,7 @@ const initialState = {
     updated: "",
     created: "",
     user_id: "",
-    workspaces_id: "",
+    workspace_id: "",
     lastname: "",
     firstname: "",
 }
