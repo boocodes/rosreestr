@@ -1,4 +1,5 @@
 import {NavigateFunction} from "react-router-dom";
+import {ActionCreatorWithPayload, AnyAction, Dispatch, PayloadAction, ThunkDispatch} from "@reduxjs/toolkit";
 
 
 interface IPromiseType {
@@ -47,17 +48,32 @@ export async function fetchMethod(method:string, body:IPromiseArgBodyData, url:s
     return await response;
 }
 
-export async function loginUserMethod (method:string, body:IPromiseArgBodyData, url:string, navigate:NavigateFunction){
+interface IChangeUserAuthFlag {
+    authFlag: boolean;
+}
+
+export async function loginUserMethod (
+    method:string,
+    body:IPromiseArgBodyData,
+    url:string,
+    navigate:NavigateFunction,
+    dispatch:ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
+    changeUserAuthFlag: any,
+    changeUserData: any,
+    ){
     await fetchMethod(method, body, url)
         .then((response)=>{
-            if(response.ok){
-                navigate("/welcome")
-                console.log("ok")
-            }
-            else{
-                navigate("/bebr")
-                console.log("not ok")
-            }
+            return response.json();
+        })
+        .then((data)=>{
+          if(data.message !== "Пользователь не найден"){
+            dispatch(changeUserData(data.message));
+            dispatch(changeUserAuthFlag({authFlag: true}))
+            navigate("/workspace");
+          }
+          else{
+              dispatch(changeUserAuthFlag({authFlag: false}));
+          }
         })
 }
 

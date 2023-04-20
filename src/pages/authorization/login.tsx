@@ -5,8 +5,8 @@ import Footer from "../../ui/footer/footer";
 import {useState, useRef} from "react";
 import {useNavigate} from "react-router-dom";
 import {fetchMethod, loginUserMethod} from "../../utils/fetchMethod";
-
-
+import {useAppDispatch} from "../../hooks/useAppDispatch";
+import {changeUserAuthFlag, changeUserData} from "../../redux/reducers/user/reducer";
 
 
 interface Props{
@@ -32,7 +32,7 @@ interface ILoginFail{
 
 function LoginPage(props:Props) {
     const navigate = useNavigate();
-
+    const dispatch = useAppDispatch();
 
     const regForm = useRef<HTMLFormElement>(null);
 
@@ -45,7 +45,7 @@ function LoginPage(props:Props) {
             password: regForm.current?.children[1].value,
         }
 
-        loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate);
+        loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate, dispatch, changeUserAuthFlag, changeUserData);
     }
 
 
