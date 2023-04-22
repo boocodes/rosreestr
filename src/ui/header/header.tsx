@@ -4,6 +4,7 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectUserAuthFlag, selectUserData} from "../../redux/reducers/user/selector";
 import LoginCase from "./LoginCase";
 import NotLoginCase from "./notLoginCase";
+import {Link} from "react-router-dom";
 
 interface Props{
 
@@ -17,7 +18,7 @@ function Header(props:Props){
         <Root>
             <LogoWrapper>
                 <LogoText>
-                    <LogoTextLink href={"/workspace"}>Росреестр</LogoTextLink>
+                    <LogoTextLink to={"/workspace"}>Росреестр</LogoTextLink>
                 </LogoText>
             </LogoWrapper>
             {
@@ -44,7 +45,7 @@ const LogoWrapper = styled.div`
 const LogoText = styled.h1`
     
 `
-const LogoTextLink = styled.a`
+const LogoTextLink = styled(Link)`
     text-decoration: none;
     color: white;
 `
