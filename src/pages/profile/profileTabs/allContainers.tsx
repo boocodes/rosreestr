@@ -29,7 +29,7 @@ function AllContainersProfileTab(props:Props){
 const WorkspaceWrapperHeader = styled.div`
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 50px;
 `
 
 const WorkspaceWrapperHeaderElement = styled(Link)`
@@ -37,7 +37,9 @@ const WorkspaceWrapperHeaderElement = styled(Link)`
     color: black;
     margin-right: 10px;
     font-size: 20px;
-    border: 1px solid black;
+    :first-child{
+        border-bottom: 2px solid #fd8c73;
+    }
     padding: 10px;
 `
 

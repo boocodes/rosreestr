@@ -52,7 +52,7 @@ const UserImage = styled.div`
     border-radius: 5px; 
 `
 const UserDataTextFieldWrapper = styled.div`
-  margin-top: 25px;
+    margin-top: 25px;
 `
 const UserFirstname = styled.p`
     font-size: 32px;

@@ -4,7 +4,7 @@ import Footer from "../../ui/footer/footer";
 import {useRef} from "react";
 import {registrateUserMethod} from "../../utils/fetchMethod";
 import {useNavigate} from "react-router-dom";
-
+import {Link} from "react-router-dom";
 
 interface Props{
 
@@ -46,7 +46,7 @@ function RegistrationPage(props:Props){
     return(
         <ExternalWrapper>
             <GoBackWrapper>
-                <GoBackButton><a href={"/welcome"}>Вернуться</a></GoBackButton>
+                <GoBackButton><Link to={"/welcome"}>Вернуться</Link></GoBackButton>
             </GoBackWrapper>
             <LoginFormWrapper>
                 <LoginForm ref={regForm} method={"POST"} onSubmit={submitForm} >
