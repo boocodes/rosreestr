@@ -5,6 +5,8 @@ import {selectUserAuthFlag, selectUserData} from "../../redux/reducers/user/sele
 import LoginCase from "./LoginCase";
 import NotLoginCase from "./notLoginCase";
 import {Link} from "react-router-dom";
+import HeaderSearchInput from "../../components/headerSearchInput/headerSearchInput";
+
 
 interface Props{
 
@@ -20,6 +22,7 @@ function Header(props:Props){
                 <LogoText>
                     <LogoTextLink to={"/workspace"}>Росреестр</LogoTextLink>
                 </LogoText>
+                <HeaderSearchInput></HeaderSearchInput>
             </LogoWrapper>
             {
                 userAuthFlag ?
@@ -32,7 +35,7 @@ function Header(props:Props){
 }
 const Root = styled.div`
     background-color: #24292f;
-    padding: 40px 70px 50px 70px;
+    padding: 25px 70px 25px 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,10 +43,11 @@ const Root = styled.div`
 `
 
 const LogoWrapper = styled.div`
-
+    display: flex;
+    align-items: center;
 `
 const LogoText = styled.h1`
-    
+    margin-right: 30px;
 `
 const LogoTextLink = styled(Link)`
     text-decoration: none;
