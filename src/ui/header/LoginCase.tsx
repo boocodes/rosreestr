@@ -12,7 +12,6 @@ interface Props{
 function LoginCase(props:Props){
     const [popupUserCabinetFlag, setPopupUserCabinetFlag] = useState<boolean>(false);
     const userData = useAppSelector(selectUserData);
-    console.log(userData);
     return(
         <>
             <UserCabinetLinkWrapper onClick={()=>setPopupUserCabinetFlag(!popupUserCabinetFlag)}>
