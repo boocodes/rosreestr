@@ -1,5 +1,6 @@
 import {NavigateFunction} from "react-router-dom";
 import {ActionCreatorWithPayload, AnyAction, Dispatch, PayloadAction, ThunkDispatch} from "@reduxjs/toolkit";
+import {changeWrongPasswordOrLoginFlag} from "../redux/reducers/modalWindows/reducer";
 
 
 interface IPromiseType {
@@ -73,6 +74,7 @@ export async function loginUserMethod (
     dispatch:ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
     changeUserAuthFlag: any,
     changeUserData: any,
+    changeWrongPasswordOrLoginFlag: any,
     ){
     await fetchMethod(method, body, url)
         .then((response)=>{
@@ -86,6 +88,7 @@ export async function loginUserMethod (
           }
           else{
               dispatch(changeUserAuthFlag({authFlag: false}));
+              dispatch(changeWrongPasswordOrLoginFlag(true));
           }
         })
 }
