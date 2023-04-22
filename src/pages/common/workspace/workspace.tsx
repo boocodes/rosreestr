@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../../../ui/header/header";
 import Footer from "../../../ui/footer/footer";
+import {Link} from "react-router-dom";
 
 
 interface Props{
@@ -19,7 +20,7 @@ function WorkspacePage(props:Props){
                           Последние контейнеры
                       </LatestRepositoriesTitle>
                       <LatestRepositoriesAddButton>
-                          Добавить
+                          <LatestRepositoriesAddLink to={"/new"}>Добавить</LatestRepositoriesAddLink>
                       </LatestRepositoriesAddButton>
                   </LatestRepositoriesTitleWrapper>
                   <LatestRepositoryFindForm>
@@ -76,6 +77,12 @@ const LatestRepositoriesAddButton = styled.button`
     font-size: 13px;
     cursor: pointer;
     color: white;
+`
+const LatestRepositoriesAddLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+    font-family: 'Gilroy';
+    font-size: 15px;
 `
 
 const LatestRepositoryFindForm = styled.form`
