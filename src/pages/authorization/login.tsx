@@ -8,6 +8,11 @@ import {fetchMethod, loginUserMethod} from "../../utils/fetchMethod";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {changeUserAuthFlag, changeUserData} from "../../redux/reducers/user/reducer";
 import {Link} from "react-router-dom";
+import wrongPasswordModal from "../../ui/modal/wrongPassword/wrongPasswordModal";
+import {changeWrongPasswordOrLoginFlag} from "../../redux/reducers/modalWindows/reducer";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectModalWindowsFlags} from "../../redux/reducers/modalWindows/selector";
+import WrongPasswordModal from "../../ui/modal/wrongPassword/wrongPasswordModal";
 
 interface Props{
 
@@ -45,25 +50,34 @@ function LoginPage(props:Props) {
             password: regForm.current?.children[1].value,
         }
 
-        loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate, dispatch, changeUserAuthFlag, changeUserData);
+        loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate, dispatch, changeUserAuthFlag, changeUserData, changeWrongPasswordOrLoginFlag);
     }
 
-
+        const wrongPasswordModalFlag = useAppSelector(selectModalWindowsFlags);
+        console.log(wrongPasswordModalFlag.wrongPasswordOrLogin);
         return (
-            <ExternalWrapper>
-                <GoBackWrapper>
-                    <GoBackButton><Link to={"/welcome"}>Вернуться</Link></GoBackButton>
-                </GoBackWrapper>
-                <LoginFormWrapper>
-                    <LoginForm ref={regForm} onSubmit={submitForm}>
-                        <input placeholder={"Имя пользователя"} type={"text"}/>
-                        <input placeholder={"Пароль"} type={"text"}/>
-                        <SubmitButtonWrapper>
-                            <SubmitButton type={"submit"} value={"Отправить"}/>
-                        </SubmitButtonWrapper>
-                    </LoginForm>
-                </LoginFormWrapper>
-            </ExternalWrapper>
+            <>
+                <ExternalWrapper>
+                    <GoBackWrapper>
+                        <GoBackButton><Link to={"/welcome"}>Вернуться</Link></GoBackButton>
+                    </GoBackWrapper>
+                    <LoginFormWrapper>
+                        <LoginForm ref={regForm} onSubmit={submitForm}>
+                            <input placeholder={"Имя пользователя"} type={"text"}/>
+                            <input placeholder={"Пароль"} type={"text"}/>
+                            <SubmitButtonWrapper>
+                                <SubmitButton type={"submit"} value={"Отправить"}/>
+                            </SubmitButtonWrapper>
+                        </LoginForm>
+                    </LoginFormWrapper>
+                </ExternalWrapper>
+                {
+                    wrongPasswordModalFlag.wrongPasswordOrLogin ?
+                        <WrongPasswordModal/>
+                        :
+                        null
+                }
+            </>
         )
 }
 
