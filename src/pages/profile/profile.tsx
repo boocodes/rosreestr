@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Route, Routes} from "react-router-dom";
 import ProfileCommonPage from "./profileCommon";
 
-import ProfileContainsPage from "./profileContains";
+import ProfileCommon from "./profileCommon";
 
 interface Props{
 
@@ -14,7 +14,7 @@ function ProfilePage(props:Props){
 
     return(
        <>
-
+            <ProfileCommonPage/>
        </>
     );
 }

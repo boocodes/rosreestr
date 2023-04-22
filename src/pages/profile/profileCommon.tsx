@@ -3,6 +3,9 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectUserData} from "../../redux/reducers/user/selector";
 import Header from "../../ui/header/header";
 import Footer from "../../ui/footer/footer";
+import noAvatarIcon from "../../images/no-image-avatar.svg";
+
+
 
 interface Props{
 
@@ -18,7 +21,7 @@ function ProfileCommonPage(props:Props){
             <Header/>
             <MainContent>
                 <AboutUserWrapper>
-                    <UserImage></UserImage>
+                    <UserImage><img src={noAvatarIcon}/></UserImage>
                     <UserDataTextFieldWrapper>
                         <UserFirstname>{userData.firstname}</UserFirstname>
                         <UserLogin>{userData.login}</UserLogin>
@@ -36,7 +39,7 @@ function ProfileCommonPage(props:Props){
                 <WorkspaceWrapper>
                     <WorkspaceWrapperHeader>
                         <WorkspaceWrapperHeaderElement href={"./profile"}>Предпросмотр</WorkspaceWrapperHeaderElement>
-                        <WorkspaceWrapperHeaderElement href={"./contains"}>Контейнеры</WorkspaceWrapperHeaderElement>
+                        <WorkspaceWrapperHeaderElement href={"./profile"}>Контейнеры</WorkspaceWrapperHeaderElement>
                     </WorkspaceWrapperHeader>
                     <RecentContainsWrapper>
                         <RecentContainsWrapperTitle>Недавние контейнеры</RecentContainsWrapperTitle>
@@ -75,8 +78,7 @@ const WorkspaceWrapper = styled.div`
 const UserImage = styled.div`
     width: 200px;
     height: 200px;
-    border-radius: 5px;
-    background-color: yellow;   
+    border-radius: 5px; 
 `
 const UserDataTextFieldWrapper = styled.div`
   margin-top: 25px;

@@ -11,9 +11,7 @@ import {useAppSelector} from "./hooks/useAppSelector";
 import {selectUserAuthFlag} from "./redux/reducers/user/selector";
 import WelcomePage from "./pages/common/welcome";
 import ProfilePage from "./pages/profile/profile";
-import ContainsPage from "./pages/profile/profileContains";
 import ProfileCommonPage from "./pages/profile/profileCommon";
-import ProfileContainsPage from "./pages/profile/profileContains";
 
 function App() {
 
@@ -49,10 +47,6 @@ function App() {
             <Route
                 path={"/profile"}
                 element={userAuthFlag ? <ProfileCommonPage/> : <Navigate to={"/login"}/>}
-            />
-            <Route
-                path={"/profile/contains"}
-                element={<ProfileContainsPage/>}
             />
 
         </Routes>
