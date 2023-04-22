@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {fetchMethod, loginUserMethod} from "../../utils/fetchMethod";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {changeUserAuthFlag, changeUserData} from "../../redux/reducers/user/reducer";
-
+import {Link} from "react-router-dom";
 
 interface Props{
 
@@ -52,7 +52,7 @@ function LoginPage(props:Props) {
         return (
             <ExternalWrapper>
                 <GoBackWrapper>
-                    <GoBackButton><a href={"/welcome"}>Вернуться</a></GoBackButton>
+                    <GoBackButton><Link to={"/welcome"}>Вернуться</Link></GoBackButton>
                 </GoBackWrapper>
                 <LoginFormWrapper>
                     <LoginForm ref={regForm} onSubmit={submitForm}>

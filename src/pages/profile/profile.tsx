@@ -31,7 +31,6 @@ function ProfilePage(props:Props){
 
 const MainContent = styled.div`
     width: 1400px;
-    border: 1px solid red;
     margin: 0 auto 200px auto;
     display: flex;
     

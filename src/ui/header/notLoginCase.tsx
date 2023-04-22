@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ButtonLink from "../linkButton/button";
-
+import {Link} from "react-router-dom";
 
 interface Props{
 
@@ -11,10 +11,10 @@ function NotLoginCase(props:Props){
     return(
         <AuthorizationWrapper>
             <LoginLinkWrapper>
-                <ButtonLink link={'./login'} linkText={'Авторизация'}/>
+                <Link to={'/login'}>Авторизация</Link>
             </LoginLinkWrapper>
             <RegistrationLinkWrapper>
-                <ButtonLink link={'./signup'} linkText={'Регистрация'}/>
+                <Link to={'/signup'}>Регистрация</Link>
             </RegistrationLinkWrapper>
         </AuthorizationWrapper>
     )

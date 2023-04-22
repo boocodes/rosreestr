@@ -37,7 +37,9 @@ const WorkspaceWrapperHeaderElement = styled(Link)`
     color: black;
     margin-right: 10px;
     font-size: 20px;
-    border: 1px solid black;
+    :last-child{
+        border-bottom: 2px solid #fd8c73;
+    }
     padding: 10px;
 `
 

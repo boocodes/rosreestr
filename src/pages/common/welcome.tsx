@@ -16,7 +16,7 @@ function WelcomePage(props:Props){
         <ExternalPage>
             <Header/>
             <MainContent>
-                Хранилище кода
+                Навигация по контейнерам
             </MainContent>
             <Footer/>
         </ExternalPage>
