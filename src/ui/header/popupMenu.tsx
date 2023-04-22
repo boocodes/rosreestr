@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectUserData} from "../../redux/reducers/user/selector";
+import {Link} from "react-router-dom";
 
 
 interface Props{
@@ -19,7 +20,7 @@ function PopupUserCabinetLinkMenu(props:Props){
                 <TitleText>Вы вошли как {userData.login}</TitleText>
             </Title>
             <AdditionalMenu>
-                <AdditionalMenuItem href={"/profile"}>Ваш аккаунт</AdditionalMenuItem>
+                <AdditionalMenuItem to={"/profile"}>Ваш аккаунт</AdditionalMenuItem>
             </AdditionalMenu>
 
         </ExternalWrapper>
@@ -52,7 +53,7 @@ const AdditionalMenu = styled.div`
     margin-top: 15px;
 `
 
-const AdditionalMenuItem = styled.a`
+const AdditionalMenuItem = styled(Link)`
 
 `
 
