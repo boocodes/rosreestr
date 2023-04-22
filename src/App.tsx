@@ -12,6 +12,7 @@ import {selectUserAuthFlag} from "./redux/reducers/user/selector";
 import WelcomePage from "./pages/common/welcome";
 import ProfilePage from "./pages/profile/profile";
 import ProfileCommonPage from "./pages/profile/profileCommon";
+import NotFoundPage from "./pages/common/notFound";
 
 function App() {
 
@@ -48,6 +49,10 @@ function App() {
             <Route
                 path={"/profile/*"}
                 element={userAuthFlag ? <ProfilePage/> : <Navigate to={"/login"}/>}
+            />
+            <Route
+                path={"*"}
+                element={<NotFoundPage/>}
             />
 
         </Routes>
