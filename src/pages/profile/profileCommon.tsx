@@ -4,7 +4,7 @@ import {selectUserData} from "../../redux/reducers/user/selector";
 import Header from "../../ui/header/header";
 import Footer from "../../ui/footer/footer";
 import noAvatarIcon from "../../images/no-image-avatar.svg";
-
+import {Link, useLocation, useParams} from "react-router-dom";
 
 
 interface Props{
@@ -18,8 +18,6 @@ function ProfileCommonPage(props:Props){
 
     return(
         <>
-            <Header/>
-            <MainContent>
                 <AboutUserWrapper>
                     <UserImage><img src={noAvatarIcon}/></UserImage>
                     <UserDataTextFieldWrapper>
@@ -36,44 +34,17 @@ function ProfileCommonPage(props:Props){
                         </AchievmentsListWrapper>
                     </AchievmentsWrapper>
                 </AboutUserWrapper>
-                <WorkspaceWrapper>
-                    <WorkspaceWrapperHeader>
-                        <WorkspaceWrapperHeaderElement href={"./profile"}>Предпросмотр</WorkspaceWrapperHeaderElement>
-                        <WorkspaceWrapperHeaderElement href={"./profile"}>Контейнеры</WorkspaceWrapperHeaderElement>
-                    </WorkspaceWrapperHeader>
-                    <RecentContainsWrapper>
-                        <RecentContainsWrapperTitle>Недавние контейнеры</RecentContainsWrapperTitle>
-                        <RecentContainsListWrapper>
-                            <RecentContainsListElem></RecentContainsListElem>
-                        </RecentContainsListWrapper>
-                    </RecentContainsWrapper>
 
-                </WorkspaceWrapper>
-            </MainContent>
-            <Footer/>
         </>
     )
 }
 
-const MainContent = styled.div`
-    width: 1400px;
-    border: 1px solid red;
-    margin: 0 auto 200px auto;
-    display: flex;
-    
-`
 
 const AboutUserWrapper = styled.div`
     font-family: 'Gilroy';
     padding: 30px 0px 30px 40px;
 `
 
-const WorkspaceWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-left: 70px;
-    font-family: 'Gilroy';
-`
 
 const UserImage = styled.div`
     width: 200px;
@@ -119,33 +90,6 @@ const AchievmentsListElem = styled.div`
 
 `
 
-const WorkspaceWrapperHeader = styled.div`
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-`
 
-const WorkspaceWrapperHeaderElement = styled.a`
-    text-decoration: none; 
-    color: black;
-    margin-right: 10px;
-    font-size: 20px;
-    border: 1px solid black;
-    padding: 10px;
-`
-
-const RecentContainsWrapper = styled.div`
-    margin-top: 50px;
-`
-const RecentContainsWrapperTitle = styled.p`
-    font-size: 22px;
-    
-`
-const RecentContainsListWrapper = styled.div`
-
-`
-const RecentContainsListElem = styled.p`
-
-`
 
 export default ProfileCommonPage;

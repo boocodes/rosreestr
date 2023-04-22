@@ -18,6 +18,7 @@ function App() {
     const userAuthFlag:boolean = useAppSelector(selectUserAuthFlag);
 
   return (
+
    <>
         <Routes>
             <Route
@@ -45,8 +46,8 @@ function App() {
                 element={<Navigate to={"/welcome"}/>}
             />
             <Route
-                path={"/profile"}
-                element={userAuthFlag ? <ProfileCommonPage/> : <Navigate to={"/login"}/>}
+                path={"/profile/*"}
+                element={userAuthFlag ? <ProfilePage/> : <Navigate to={"/login"}/>}
             />
 
         </Routes>
