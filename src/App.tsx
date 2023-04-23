@@ -64,7 +64,10 @@ function App() {
                 path={"/logout"}
                 element={userAuthFlag ? <LogoutPage/> : <Navigate to={"/welcome"}/>}
             />
-
+            <Route
+                path={"/settings"}
+                element={userAuthFlag ? <ProfileSettingsPage/> : <Navigate to={"/login"}/>}
+            />
         </Routes>
    </>
   );
