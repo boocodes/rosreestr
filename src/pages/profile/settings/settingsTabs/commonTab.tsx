@@ -114,6 +114,7 @@ const DataSettingsFormSubmitButton = styled.input`
     border-radius: 5px;
     color: white;
     font-size: 16px;
+    cursor: pointer;
     margin-top: 70px;
 `
 

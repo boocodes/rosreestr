@@ -11,7 +11,6 @@ import {useAppSelector} from "./hooks/useAppSelector";
 import {selectUserAuthFlag} from "./redux/reducers/user/selector";
 import WelcomePage from "./pages/common/welcome";
 import ProfilePage from "./pages/profile/profile";
-import ProfileCommonPage from "./pages/profile/profileCommon";
 import NotFoundPage from "./pages/common/notFound";
 import AddContainerPage from "./pages/common/containers/addContainer";
 import LogoutPage from "./pages/common/logout";
@@ -51,6 +50,10 @@ function App() {
             <Route
                 path={"/profile/*"}
                 element={userAuthFlag ? <ProfilePage/> : <Navigate to={"/login"}/>}
+            />
+            <Route
+                path={"/profile"}
+                element={userAuthFlag ? <Navigate to={"/profile/overview"}/> : <Navigate to={"/login"}/>}
             />
             <Route
                 path={"*"}

@@ -11,10 +11,6 @@ function RecentContainersProfileTab(props:Props){
 
     return(
         <WorkspaceWrapper>
-            <WorkspaceWrapperHeader>
-                <WorkspaceWrapperHeaderElement to={"/profile"}>Предпросмотр</WorkspaceWrapperHeaderElement>
-                <WorkspaceWrapperHeaderElement to={"./contains"}>Контейнеры</WorkspaceWrapperHeaderElement>
-            </WorkspaceWrapperHeader>
             <RecentContainsWrapper>
                 <RecentContainsWrapperTitle>Недавние контейнеры</RecentContainsWrapperTitle>
                 <RecentContainsListWrapper>
@@ -25,23 +21,6 @@ function RecentContainersProfileTab(props:Props){
         </WorkspaceWrapper>
     )
 }
-
-const WorkspaceWrapperHeader = styled.div`
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-`
-
-const WorkspaceWrapperHeaderElement = styled(Link)`
-    text-decoration: none; 
-    color: black;
-    margin-right: 10px;
-    font-size: 20px;
-    :last-child{
-        border-bottom: 2px solid #fd8c73;
-    }
-    padding: 10px;
-`
 
 const RecentContainsWrapper = styled.div`
     margin-top: 50px;

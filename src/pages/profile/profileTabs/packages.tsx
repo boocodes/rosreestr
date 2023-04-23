@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import {Link, useLocation} from "react-router-dom";
-import {getLastElemOfPath} from "../../../utils/paramsMethods";
+import {Link} from "react-router-dom";
 
 
 
@@ -8,11 +7,12 @@ interface Props{
 
 }
 
-function AllContainersProfileTab(props:Props){
+function PackagesProfileTab(props:Props){
+
     return(
         <WorkspaceWrapper>
             <RecentContainsWrapper>
-                <RecentContainsWrapperTitle>Все контейнеры</RecentContainsWrapperTitle>
+                <RecentContainsWrapperTitle>Пакеты</RecentContainsWrapperTitle>
                 <RecentContainsListWrapper>
                     <RecentContainsListElem></RecentContainsListElem>
                 </RecentContainsListWrapper>
@@ -42,4 +42,4 @@ const WorkspaceWrapper = styled.div`
     font-family: 'Gilroy';
 `
 
-export default AllContainersProfileTab;
+export default PackagesProfileTab;
