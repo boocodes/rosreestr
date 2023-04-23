@@ -14,8 +14,7 @@ interface Props{
 
 function ProfilePage(props:Props){
 
-    const a = useLocation();
-    console.log(a);
+
     return(
        <>
            <Header/>
