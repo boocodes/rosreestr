@@ -45,11 +45,11 @@ function LoginPage(props:Props) {
         event.preventDefault();
         const object = {
             // @ts-ignore
-            login: regForm.current?.children[0].value,
+            login: regForm.current?.children[0].children[1].value,
             // @ts-ignore
-            password: regForm.current?.children[1].value,
+            password: regForm.current?.children[1].children[1].value,
         }
-
+        console.log(object);
         loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate, dispatch, changeUserAuthFlag, changeUserData, changeWrongPasswordOrLoginFlag);
     }
 
@@ -59,12 +59,18 @@ function LoginPage(props:Props) {
             <>
                 <ExternalWrapper>
                     <GoBackWrapper>
-                        <GoBackButton><Link to={"/welcome"}>Вернуться</Link></GoBackButton>
+                        <GoBackButtonLink to={"/welcome"}>Вернуться</GoBackButtonLink>
                     </GoBackWrapper>
                     <LoginFormWrapper>
                         <LoginForm ref={regForm} onSubmit={submitForm}>
-                            <input placeholder={"Имя пользователя"} type={"text"}/>
-                            <input placeholder={"Пароль"} type={"text"}/>
+                            <LoginInputWrapper>
+                                <LoginInputLabel>Имя пользователя</LoginInputLabel>
+                                <LoginInput placeholder={"код01"} type={"text"}/>
+                            </LoginInputWrapper>
+                            <PasswordInputWrapper>
+                                <PasswordInputLabel>Пароль</PasswordInputLabel>
+                                <PasswordInput placeholder={"13ao4"} type={"password"}/>
+                            </PasswordInputWrapper>
                             <SubmitButtonWrapper>
                                 <SubmitButton type={"submit"} value={"Отправить"}/>
                             </SubmitButtonWrapper>
@@ -82,11 +88,10 @@ function LoginPage(props:Props) {
 }
 
 const ExternalWrapper = styled.div`
-    border: 1px solid red;
     width: 400px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 100px;
+    margin-top: 200px;
     font-family: 'Gilroy';
     display: flex;
     flex-direction: column;
@@ -94,25 +99,22 @@ const ExternalWrapper = styled.div`
     justify-content: center;
 `
 const GoBackWrapper = styled.div`
-    width: 400px;
+    width: 300px;
 `
-const GoBackButton = styled.button`
+const GoBackButtonLink = styled(Link)`
     border: none;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
     font-family: 'Gilroy';
+    background-color: #d0d7de;
+    color: white;
     cursor: pointer;
-    :hover{
-        transition: 0.5s;
-        opacity: 0.5;
-    }
 `
 const LoginFormWrapper = styled.div`
     margin-top: 40px;
-`
-const LastNameAndFirstNameInputWrapper = styled.div`
-    margin-bottom: 30px;
 `
 
 const LoginForm = styled.form`
@@ -134,6 +136,43 @@ const SubmitButton = styled.input`
     }
     color: white;
     font-size: 18px;
+`
+
+const LoginInputWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+`
+const LoginInputLabel = styled.label`
+    font-size: 20px;
+    margin-bottom: 10px;
+`
+const LoginInput = styled.input`
+    width: 300px;
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    color: #1f2328;
+`
+
+const PasswordInputWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const PasswordInputLabel = styled.label`
+    font-size: 20px;
+    margin-bottom: 10px;
+`
+
+const PasswordInput = styled.input`
+    width: 300px;
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    color: #1f2328;
 `
 
 export default LoginPage;

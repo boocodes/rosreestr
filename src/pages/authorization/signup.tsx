@@ -27,40 +27,30 @@ function RegistrationPage(props:Props){
             // @ts-ignore
             mail: regForm.current?.children[2].value,
             // @ts-ignore
-            created: regForm.current?.children[3].value,
-            // @ts-ignore
-            updated: regForm.current?.children[4].value,
-            // @ts-ignore
-            workspace_id: regForm.current?.children[5].value,
-            // @ts-ignore
-            user_id: regForm.current?.children[6].value,
-            // @ts-ignore
-            password: regForm.current?.children[7].value,
+            password: regForm.current?.children[3].value,
+
         }
+        console.log(object);
         //@ts-ignore
         console.log(object);
-        registrateUserMethod("POST", object, "https://rosreestr/vendor/api/user/registration.php", navigate);
+        //registrateUserMethod("POST", object, "https://rosreestr/vendor/api/user/registration.php", navigate);
     }
 
 
     return(
         <ExternalWrapper>
             <GoBackWrapper>
-                <GoBackButton><Link to={"/welcome"}>Вернуться</Link></GoBackButton>
+                <GoBackButtonLink to={"/welcome"}>Вернуться</GoBackButtonLink>
             </GoBackWrapper>
             <LoginFormWrapper>
                 <LoginForm ref={regForm} method={"POST"} onSubmit={submitForm} >
                     <LastNameAndFirstNameInputWrapper>
-                        <input placeholder={"Имя"} type={"text"} />
-                        <input placeholder={"Фамилия"} type={"text"} />
+                        <FirstnameInput placeholder={"Имя"} type={"text"} />
+                        <LastnameInput placeholder={"Фамилия"} type={"text"} />
                     </LastNameAndFirstNameInputWrapper>
-                    <input placeholder={"Имя пользователя"} type={"text"} />
-                    <input placeholder={"Электронная почта"} type={"email"} />
-                    <input placeholder={"Создан (дата)"} type={"text"} />
-                    <input placeholder={"Обновлен (дата)"} type={"text"} />
-                    <input placeholder={"Номер рабочего пространства"} type={"text"} />
-                    <input placeholder={"Номер пользователя"} type={"text"}/>
-                    <input placeholder={"Пароль"} type={"text"}/>
+                    <LoginInput placeholder={"Имя пользователя"} type={"text"}/>
+                    <EmailInput placeholder={"Электронная почта"} type={"email"}/>
+                    <PasswordInput placeholder={"Пароль"} type={"password"}/>
                     <SubmitButtonWrapper>
                         <SubmitButton type={"submit"} value={"Отправить"}/>
                     </SubmitButtonWrapper>
@@ -71,11 +61,9 @@ function RegistrationPage(props:Props){
 }
 
 const ExternalWrapper = styled.div`
-    border: 1px solid red;
-    width: 400px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 100px;
+    margin-top: 200px;
     font-family: 'Gilroy';
     display: flex;
     flex-direction: column;
@@ -83,25 +71,64 @@ const ExternalWrapper = styled.div`
     justify-content: center;
 `
 const GoBackWrapper = styled.div`
-    width: 400px;
+    margin-right: 320px;
 `
-const GoBackButton = styled.button`
+const GoBackButtonLink = styled(Link)`
     border: none;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
     font-family: 'Gilroy';
+    background-color: #d0d7de;
+    color: white;
     cursor: pointer;
-    :hover{
-        transition: 0.5s;
-        opacity: 0.5;
-    }
 `
 const LoginFormWrapper = styled.div`
     margin-top: 40px;
 `
 const LastNameAndFirstNameInputWrapper = styled.div`
     margin-bottom: 30px;
+`
+const FirstnameInput = styled.input`
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    color: #1f2328;
+    margin-right: 20px;
+`
+const LastnameInput = styled.input`
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    color: #1f2328;
+`
+const LoginInput = styled.input`
+    margin-bottom: 30px;
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    color: #1f2328;
+`
+
+const EmailInput = styled.input`
+    margin-bottom: 30px;
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    color: #1f2328;
+`
+const PasswordInput = styled.input`
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    color: #1f2328;
 `
 
 const LoginForm = styled.form`
