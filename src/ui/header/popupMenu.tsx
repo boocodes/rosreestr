@@ -19,8 +19,11 @@ function PopupUserCabinetLinkMenu(props:Props){
             <Title>
                 <TitleText>Вы вошли как {userData.login}</TitleText>
             </Title>
+            <UndertitleLine/>
             <AdditionalMenu>
                 <AdditionalMenuItem to={"/profile"}>Ваш аккаунт</AdditionalMenuItem>
+                <AdditionalMenuItem to={"/settings"}>Настройки</AdditionalMenuItem>
+                <AdditionalMenuItem to={"/logout"}>Выйти</AdditionalMenuItem>
             </AdditionalMenu>
 
         </ExternalWrapper>
@@ -29,13 +32,13 @@ function PopupUserCabinetLinkMenu(props:Props){
 
 const ExternalWrapper = styled.div`
     font-family: 'Gilroy';
-    padding: 15px 30px;
+    padding: 15px 0px;
     z-index: 10;
     position: absolute;
     background-color: white;
     border-radius: 5px;
     right: 70px;
-    top: 90px;
+    top: 80px;
     border: 1px solid gray;
     display: flex;
     align-items: flex-start;
@@ -44,17 +47,37 @@ const ExternalWrapper = styled.div`
     
 `
 const Title = styled.div`
-    
+    padding: 0px 30px;
 `
 const TitleText = styled.p`
-
+   margin-bottom: 15px;
 `
+const UndertitleLine = styled.div`
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background-color: #d0d7de;
+    
+`
+
 const AdditionalMenu = styled.div`
     margin-top: 15px;
+    padding: 0px 30px;
+    display: flex;
+    flex-direction: column;
 `
 
 const AdditionalMenuItem = styled(Link)`
-
+    text-decoration: none;
+    color: black;
+    :hover{
+        opacity: 0.5;
+        transition: 0.5s;
+    }
+    margin-bottom: 25px;
+    :last-child{
+        margin-bottom: 0px;
+    }
 `
 
 export default PopupUserCabinetLinkMenu;
