@@ -14,6 +14,7 @@ import ProfilePage from "./pages/profile/profile";
 import ProfileCommonPage from "./pages/profile/profileCommon";
 import NotFoundPage from "./pages/common/notFound";
 import AddContainerPage from "./pages/common/containers/addContainer";
+import LogoutPage from "./pages/common/logout";
 
 function App() {
 
@@ -58,6 +59,10 @@ function App() {
             <Route
                 path={"/new"}
                 element={userAuthFlag ? <AddContainerPage/> : <Navigate to={"/login"}/>}
+            />
+            <Route
+                path={"/logout"}
+                element={userAuthFlag ? <LogoutPage/> : <Navigate to={"/welcome"}/>}
             />
 
         </Routes>
