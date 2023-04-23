@@ -42,7 +42,7 @@ function App() {
             />
             <Route
                 path={"/workspace"}
-                element={userAuthFlag ? <WorkspacePage/> : <Navigate to={"/login"}/>}
+                element={userAuthFlag ? <WorkspacePage/> : <Navigate to={"/welcome"}/>}
             />
             <Route
                 path={"/"}

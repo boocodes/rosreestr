@@ -11,14 +11,20 @@ function NotLoginCase(props:Props){
     return(
         <AuthorizationWrapper>
             <LoginLinkWrapper>
-                <Link to={'/login'}>Авторизация</Link>
+                <NavigationLink to={'/login'}>Авторизация</NavigationLink>
             </LoginLinkWrapper>
             <RegistrationLinkWrapper>
-                <Link to={'/signup'}>Регистрация</Link>
+                <NavigationLink to={'/signup'}>Регистрация</NavigationLink>
             </RegistrationLinkWrapper>
         </AuthorizationWrapper>
     )
 }
+
+const NavigationLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+    font-size: 19px;
+`
 
 const AuthorizationWrapper = styled.div`
     display: flex;

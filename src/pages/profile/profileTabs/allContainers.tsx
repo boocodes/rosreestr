@@ -17,7 +17,7 @@ function AllContainersProfileTab(props:Props){
     return(
         <WorkspaceWrapper>
             <WorkspaceWrapperHeader>
-                <WorkspaceWrapperHeaderElement to={"/profile"}>Предпросмотр</WorkspaceWrapperHeaderElement>
+                <WorkspaceWrapperHeaderElement to={"./overview"}>Предпросмотр</WorkspaceWrapperHeaderElement>
                 <WorkspaceWrapperHeaderElement to={"./contains"}>Контейнеры</WorkspaceWrapperHeaderElement>
             </WorkspaceWrapperHeader>
             <RecentContainsWrapper>
