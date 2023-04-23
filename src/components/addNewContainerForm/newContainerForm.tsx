@@ -58,14 +58,14 @@ function NewContainerForm(props:Props){
             </ContainerDescriptionInputWrapper>
             <ContainerPrivacyWrapper>
                 <ContainerPrivacyOpenInputWrapper>
-                    <ContainerPrivacyOpenInput checked={openPrivacyFlag} onClick={()=>handleChangePrivacySettings("open")} type={"checkbox"}/>
+                    <ContainerPrivacyOpenInput checked={openPrivacyFlag} onChange={()=>{}} onClick={()=>handleChangePrivacySettings("open")} type={"checkbox"}/>
                     <ContainerPrivacyOpenLabelWrapper>
                         <ContainerPrivacyOpenLabel>Открытый контейнер</ContainerPrivacyOpenLabel>
                         <ContainerPrivacyOpenSubLabel>Каждый в интернете может увидеть этот контейнер. Вы выбираете кто делает изменения</ContainerPrivacyOpenSubLabel>
                     </ContainerPrivacyOpenLabelWrapper>
                 </ContainerPrivacyOpenInputWrapper>
                 <ContainerPrivacyCloseInputWrapper>
-                    <ContainerPrivacyCloseInput checked={closePrivacyFlag} onClick={()=>handleChangePrivacySettings("close")} type={"checkbox"}/>
+                    <ContainerPrivacyCloseInput checked={closePrivacyFlag} onChange={()=>{}} onClick={()=>handleChangePrivacySettings("close")} type={"checkbox"}/>
                     <ContainerPrivacyCloseLabelWrapper>
                         <ContainerPrivacyCloseLabel>Закрытый контейнер</ContainerPrivacyCloseLabel>
                         <ContainerPrivacyCloseSubLabel>Вы выбираете тех, кто может смотреть контейнер и делать изменения</ContainerPrivacyCloseSubLabel>

@@ -5,7 +5,7 @@ import Welcome from "./pages/common/welcome";
 import {Navigate, Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/authorization/login";
 import RegistrationPage from "./pages/authorization/signup";
-import ProfileSettingsPage from "./pages/profile/settings";
+import ProfileSettingsPage from "./pages/profile/settings/settings";
 import WorkspacePage from "./pages/common/workspace/workspace";
 import {useAppSelector} from "./hooks/useAppSelector";
 import {selectUserAuthFlag} from "./redux/reducers/user/selector";
@@ -65,7 +65,7 @@ function App() {
                 element={userAuthFlag ? <LogoutPage/> : <Navigate to={"/welcome"}/>}
             />
             <Route
-                path={"/settings"}
+                path={"/settings/*"}
                 element={userAuthFlag ? <ProfileSettingsPage/> : <Navigate to={"/login"}/>}
             />
         </Routes>

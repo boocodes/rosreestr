@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import {getLastElemOfPath} from "../../../utils/paramsMethods";
 
 
 
@@ -8,6 +9,10 @@ interface Props{
 }
 
 function AllContainersProfileTab(props:Props){
+
+
+    const location = useLocation();
+    getLastElemOfPath(location.pathname)
 
     return(
         <WorkspaceWrapper>

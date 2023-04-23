@@ -22,7 +22,7 @@ function PopupUserCabinetLinkMenu(props:Props){
             <UndertitleLine/>
             <AdditionalMenu>
                 <AdditionalMenuItem to={"/profile"}>Ваш аккаунт</AdditionalMenuItem>
-                <AdditionalMenuItem to={"/settings"}>Настройки</AdditionalMenuItem>
+                <AdditionalMenuItem to={"/settings/common"}>Настройки</AdditionalMenuItem>
                 <AdditionalMenuItem to={"/logout"}>Выйти</AdditionalMenuItem>
             </AdditionalMenu>
 
