@@ -40,6 +40,9 @@ function WorkspacePage(props:Props){
                   <LatestNewsTitleWrapper>
                       <LatestNewsTitleText>Новости</LatestNewsTitleText>
                   </LatestNewsTitleWrapper>
+                  <LatestNewsTextWrapper>
+                      <LatestNewText>Новостей пока что нет</LatestNewText>
+                  </LatestNewsTextWrapper>
               </LatestNewsWrapper>
           </MainContent>
           <Footer/>
@@ -128,6 +131,13 @@ const LatestNewsTitleWrapper = styled.div`
 const LatestNewsTitleText = styled.p`
     position: relative;
     font-weight: 700;   
+`
+const LatestNewsTextWrapper = styled.div`
+    margin-top: 35px;
+`
+
+const LatestNewText = styled.p`
+
 `
 
 

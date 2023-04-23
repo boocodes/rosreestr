@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 
 interface Props{
-
+    setPopularUserCabinetFlag: (flag: boolean)=>void;
 }
 
 
@@ -21,9 +21,9 @@ function PopupUserCabinetLinkMenu(props:Props){
             </Title>
             <UndertitleLine/>
             <AdditionalMenu>
-                <AdditionalMenuItem to={"/profile"}>Ваш аккаунт</AdditionalMenuItem>
-                <AdditionalMenuItem to={"/settings/common"}>Настройки</AdditionalMenuItem>
-                <AdditionalMenuItem to={"/logout"}>Выйти</AdditionalMenuItem>
+                <AdditionalMenuItem onClick={()=>props.setPopularUserCabinetFlag(false)} to={"/profile"}>Ваш аккаунт</AdditionalMenuItem>
+                <AdditionalMenuItem onClick={()=>props.setPopularUserCabinetFlag(false)} to={"/settings/common"}>Настройки</AdditionalMenuItem>
+                <AdditionalMenuItem onClick={()=>props.setPopularUserCabinetFlag(false)} to={"/logout"}>Выйти</AdditionalMenuItem>
             </AdditionalMenu>
 
         </ExternalWrapper>

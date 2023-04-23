@@ -70,9 +70,9 @@ function ProfileSettingsPage(props:Props){
                 <AttaractiveSettingsWrapper>
                     <NavigationSettingsWrapper>
                         <NavigateSettingsListWrapper>
-                            <NavigateSettingsListElem to={"./common"}>Открытые данные</NavigateSettingsListElem>
-                            <NavigateSettingsListElem to={"./admin"}>Страница</NavigateSettingsListElem>
-                            <NavigateSettingsListElem to={"./appearance"}>Окружение</NavigateSettingsListElem>
+                            <NavigateSettingsListElem tabState={tabState} to={"./common"}>Открытые данные</NavigateSettingsListElem>
+                            <NavigateSettingsListElem tabState={tabState} to={"./admin"}>Страница</NavigateSettingsListElem>
+                            <NavigateSettingsListElem tabState={tabState} to={"./appearance"}>Окружение</NavigateSettingsListElem>
                         </NavigateSettingsListWrapper>
                     </NavigationSettingsWrapper>
                     <DisplayingTabCase tab={tabState}/>
@@ -154,7 +154,12 @@ const NavigateSettingsListWrapper = styled.div`
     flex-direction: column;
     width: 250px;
 `
-const NavigateSettingsListElem = styled(Link)`
+
+interface INavigateSettingsListElem{
+    tabState:string;
+}
+
+const NavigateSettingsListElem = styled(Link)<INavigateSettingsListElem>`
     margin-top: 20px;
     padding: 5px 10px;
     border-radius: 5px;
@@ -165,7 +170,9 @@ const NavigateSettingsListElem = styled(Link)`
         background-color: #f4f6f7;
         transition: 0.4s;
     }
-    :first-child{
+    :nth-child(
+       ${props=>props.tabState === "common" ? "1" : props.tabState === "admin" ? "2" : "3"}
+    ){
         font-weight: 600;
         background-color: #f4f6f7;
     }

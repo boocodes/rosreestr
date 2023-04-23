@@ -21,7 +21,7 @@ function LoginCase(props:Props){
                 popupUserCabinetFlag ?
                     <>
                         <Overlay onClick={()=>setPopupUserCabinetFlag(!popupUserCabinetFlag)}/>
-                        <PopupUserCabinetLinkMenu/>
+                        <PopupUserCabinetLinkMenu setPopularUserCabinetFlag={setPopupUserCabinetFlag}/>
                     </>
                     :
                     null
