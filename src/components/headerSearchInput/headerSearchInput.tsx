@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectContains} from "../../redux/reducers/contain/selector";
+import {selectUserData} from "../../redux/reducers/user/selector";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
+import {getContains} from "../../utils/fetchMethod";
+import {addContain} from "../../redux/reducers/contain/reducer";
+import {isArrayEmpty} from "../../utils/usefullMethods";
 
 
 interface Props{
@@ -8,21 +15,43 @@ interface Props{
 }
 
 
-
+interface IContainsList{
+    title: string;
+    contain_link: string;
+    private: string;
+    user_id: string;
+    edited: string;
+    created: string;
+    contain_id: string;
+    description: string;
+}
 
 function AdditionalSearchMenu(){
 
+    const containList = useAppSelector(selectContains);
+    const userData = useAppSelector(selectUserData);
+    const dispatch = useAppDispatch();
+    console.log(containList);
+    useEffect(()=>{
+        const objectData = {
+            user_id: userData.user_id,
+            user_password: userData.password,
+        }
+        getContains("POST", objectData, "https://rosreestr/vendor/api/container/get_contain.php", dispatch, addContain);
+    }, [])
 
     return(
         <AdditionalMenu>
-            <AdditionalMenuItemList>
-                <AdditionalMenuItemElem>boocodes/rosreestr</AdditionalMenuItemElem>
-                <AdditionalMenuItemElem>boocodes/resreestr_backend</AdditionalMenuItemElem>
-                <AdditionalMenuItemElem>boocodes/sarofanTest</AdditionalMenuItemElem>
-                <AdditionalMenuItemElem>boocodes/trelello-without-redux</AdditionalMenuItemElem>
-                <AdditionalMenuItemElem>boocodes/trelello-with-redux</AdditionalMenuItemElem>
-                <AdditionalMenuItemElem>boocodes/react-init-files</AdditionalMenuItemElem>
-            </AdditionalMenuItemList>
+                {
+                    isArrayEmpty(containList) ? <AdditionalMenuItemElem>Ничего не найдено</AdditionalMenuItemElem> :
+                    containList.map((elem:IContainsList)=>{
+                        return (
+                            <AdditionalMenuItemList>
+                                <AdditionalMenuItemElem>{userData.login}/{elem.title}</AdditionalMenuItemElem>
+                            </AdditionalMenuItemList>
+                        )
+                    })
+                }
         </AdditionalMenu>
     )
 }

@@ -12,7 +12,6 @@ function AdminSettingsTab(props:Props){
     return(
         <>
             Личные настройки
-
         </>
     )
 }

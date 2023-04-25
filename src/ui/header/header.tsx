@@ -22,7 +22,7 @@ function Header(props:Props){
                 <LogoText>
                     <LogoTextLink to={"/workspace"}>Росреестр</LogoTextLink>
                 </LogoText>
-                <HeaderSearchInput></HeaderSearchInput>
+                <HeaderSearchInput/>
             </LogoWrapper>
             {
                 userAuthFlag ?

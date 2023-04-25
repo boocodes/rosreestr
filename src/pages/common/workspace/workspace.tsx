@@ -2,14 +2,45 @@ import styled from "styled-components";
 import Header from "../../../ui/header/header";
 import Footer from "../../../ui/footer/footer";
 import {Link} from "react-router-dom";
-
+import {useAppSelector} from "../../../hooks/useAppSelector";
+import {selectContains} from "../../../redux/reducers/contain/selector";
+import {selectUserData} from "../../../redux/reducers/user/selector";
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {useEffect} from "react";
+import {getContains} from "../../../utils/fetchMethod";
+import {addContain} from "../../../redux/reducers/contain/reducer";
+import {isArrayEmpty} from "../../../utils/usefullMethods";
 
 interface Props{
 
 }
 
+interface IContainsList{
+    title: string;
+    contain_link: string;
+    private: string;
+    user_id: string;
+    edited: string;
+    created: string;
+    contain_id: string;
+    description: string;
+}
 
 function WorkspacePage(props:Props){
+
+    const containList = useAppSelector(selectContains);
+    const userData = useAppSelector(selectUserData);
+    const dispatch = useAppDispatch();
+    console.log(containList);
+    useEffect(()=>{
+        const objectData = {
+            user_id: userData.user_id,
+            user_password: userData.password,
+        }
+        getContains("POST", objectData, "https://rosreestr/vendor/api/container/get_contain.php", dispatch, addContain);
+    }, [])
+
+
   return(
       <>
           <Header/>
@@ -26,14 +57,16 @@ function WorkspacePage(props:Props){
                   <LatestRepositoryFindForm>
                       <LatestRepositoryFindInput placeholder={"Искать контейнер..."} type={"text"}/>
                   </LatestRepositoryFindForm>
-                  <LatestRepositoryContainerList>
-                      <LatestRepositoryContaiterElem>boocodes/rosreestr</LatestRepositoryContaiterElem>
-                      <LatestRepositoryContaiterElem>boocodes/resreestr_backend</LatestRepositoryContaiterElem>
-                      <LatestRepositoryContaiterElem>boocodes/sarofanTest</LatestRepositoryContaiterElem>
-                      <LatestRepositoryContaiterElem>boocodes/trelello-without-redux</LatestRepositoryContaiterElem>
-                      <LatestRepositoryContaiterElem>boocodes/trelello-with-redux</LatestRepositoryContaiterElem>
-                      <LatestRepositoryContaiterElem>boocodes/react-init-files</LatestRepositoryContaiterElem>
-                  </LatestRepositoryContainerList>
+                  {
+                      isArrayEmpty(containList) ? <LatestRepositoryContainerElemNotLink>Ничего не найдено</LatestRepositoryContainerElemNotLink> :
+                          <LatestRepositoryContainerList>
+                              {
+                                  containList.map((elem:IContainsList)=>{
+                                      return <LatestRepositoryContainerElem to={"/container/" + userData.login + "/" + elem.title} key={elem.title}>{userData.login}/{elem.title}</LatestRepositoryContainerElem>
+                                  })
+                              }
+                          </LatestRepositoryContainerList>
+                  }
                   <LatestRepositoryContainerListShowMoreButton>Показать больше</LatestRepositoryContainerListShowMoreButton>
               </LatestRepositoriesWrapper>
               <LatestNewsWrapper>
@@ -104,10 +137,25 @@ const LatestRepositoryFindInput = styled.input`
 `
 const LatestRepositoryContainerList = styled.div`
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 `
-const LatestRepositoryContaiterElem = styled.p`
+const LatestRepositoryContainerElem = styled(Link)`
+    font-size: 17px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 15px;
+    :last-child{
+        margin-bottom: 0px;
+    }
+    
+`
+const LatestRepositoryContainerElemNotLink = styled.p`
     font-size: 15px;
     margin-bottom: 5px;
+    text-decoration: none;
 `
 const LatestRepositoryContainerListShowMoreButton = styled.button`
     background: none;

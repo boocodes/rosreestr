@@ -30,10 +30,8 @@ function RegistrationPage(props:Props){
             password: regForm.current?.children[3].value,
 
         }
-        console.log(object);
-        //@ts-ignore
-        console.log(object);
-        //registrateUserMethod("POST", object, "https://rosreestr/vendor/api/user/registration.php", navigate);
+
+        registrateUserMethod("POST", object, "https://rosreestr/vendor/api/user/registration.php", navigate);
     }
 
 

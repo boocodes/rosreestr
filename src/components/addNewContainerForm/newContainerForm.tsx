@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import {useRef} from "react";
 import {useState} from "react";
+import {createContainMethod} from "../../utils/fetchMethod";
+import {useNavigate} from "react-router-dom";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectUserData} from "../../redux/reducers/user/selector";
+
 
 interface Props{
 
 }
 
 function NewContainerForm(props:Props){
-
+    const navigate = useNavigate();
+    const userData = useAppSelector(selectUserData);
     const [buttonActiveFlag, setButtonActiveFlag] = useState(false);
     const chpek = useRef<HTMLInputElement>(null);
     const [openPrivacyFlag, setOpenPrivacyFlag] = useState(true);
@@ -37,9 +43,19 @@ function NewContainerForm(props:Props){
 
     function handleSubmit(event:React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        console.log(formRef)
-        if(buttonActiveFlag){
 
+        if(buttonActiveFlag){
+            const objectData = {
+                //@ts-ignore
+                contain_title :formRef.current[0].value,
+                //@ts-ignore
+                contain_description :formRef.current[1].value,
+                //@ts-ignore
+                contain_private :formRef.current[3].checked,
+                user_id: userData.user_id,
+            }
+            console.log(userData);
+            createContainMethod("POST",objectData, "https://rosreestr/vendor/api/container/create_contain.php", navigate);
         }
         else{
             return

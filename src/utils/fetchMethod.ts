@@ -1,6 +1,7 @@
 import {NavigateFunction} from "react-router-dom";
 import {ActionCreatorWithPayload, AnyAction, Dispatch, PayloadAction, ThunkDispatch} from "@reduxjs/toolkit";
 import {changeWrongPasswordOrLoginFlag} from "../redux/reducers/modalWindows/reducer";
+import exp from "constants";
 
 
 interface IPromiseType {
@@ -22,15 +23,23 @@ interface IPromiseLoginArgBodyData{
     password: string;
 }
 
+interface IPromiseCreateContain{
+    contain_title: string;
+    contain_description: string;
+    contain_private: boolean;
+    user_id: string;
+}
+
+interface IPromiseGetContain{
+    user_id: string;
+    user_password: string;
+}
+
 interface IPromiseRegistrateArgBodyData{
     firstname: string;
     lastname: string;
     mail: string;
-    created: string;
-    updated: string;
     login: string;
-    workspace_id: string;
-    user_id: string;
     password: string,
 }
 
@@ -111,3 +120,41 @@ export async function registrateUserMethod(
         })
 }
 
+export async function createContainMethod(
+    method: "POST",
+    body: IPromiseCreateContain,
+    url: string,
+    navigate: NavigateFunction
+    ){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            console.log(data);
+            if(data.ok){
+                navigate("/profile")
+            }
+            else{
+                return;
+            }
+        })
+}
+
+export async function getContains(
+    method: "POST",
+    body: IPromiseGetContain,
+    url: string,
+    dispatch: ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
+    addContain: any,
+    ){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            if(data.ok){
+               return data.json();
+            }
+            else{
+                return false;
+            }
+        })
+        .then((response)=>{
+            dispatch(addContain({containArr: response.message.records}))
+        })
+}
