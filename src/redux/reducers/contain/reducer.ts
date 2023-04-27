@@ -26,6 +26,7 @@ interface IContainViewPage{
     edited: string;
     created: string;
     description: string;
+    author: string;
 }
 
 interface IChangeContainClosedFlag{

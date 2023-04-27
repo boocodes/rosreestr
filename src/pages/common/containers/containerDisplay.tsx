@@ -19,6 +19,7 @@ import {
 } from "../../../redux/reducers/contain/selector";
 import {isObjectEmpty} from "../../../utils/usefullMethods";
 import {selectUserData} from "../../../redux/reducers/user/selector";
+import ContainerDisplayInner from "./containerDisplayInner";
 
 
 interface Props{
@@ -56,12 +57,7 @@ function DisplayingContainViewPage(props:IDisplayingContainViewPage){
                                 Ничего не найден
                             </ContainerTitle>
                             :
-                            <ContainerDisplayWrapper>
-                                <ContainerTitle>Название: {props.containViewPage.title}</ContainerTitle>
-                                <ContainerDescription>Описание: {props.containViewPage.description}</ContainerDescription>
-                                <ContainerEdited>Изменен: {props.containViewPage.edited}</ContainerEdited>
-                                <ContainerCreated>Создан: {props.containViewPage.created}</ContainerCreated>
-                            </ContainerDisplayWrapper>
+                            <ContainerDisplayInner/>
             }
         </>
     )
@@ -75,7 +71,6 @@ function ContainerDisplayPage(props:Props){
     const containViewPage = useAppSelector(selectContainViewPage);
     const containClosedFlag = useAppSelector(selectContainClosedFlag);
     const containNotFoundFlag = useAppSelector(selectContainNotFoundFlag);
-    console.log(userData);
     useEffect(()=>{
        const objectData = {
            login: getPreLastElemOfPath(location.pathname),
@@ -84,50 +79,19 @@ function ContainerDisplayPage(props:Props){
        }
        getContainByUsernameAndContainName("POST", objectData, "https://rosreestr/vendor/api/container/get_contain_by_login.php", dispatch, changeContainerViewPage, changeContainClosedFlag, changeContainNotFoundFlag);
     }, [])
-    console.log(containViewPage);
     return (
         <>
-            <Header/>
-            <MainContent>
-                <DisplayingContainViewPage containViewPage={containViewPage} containClosedFlag={containClosedFlag} containNotFoundFlag={containNotFoundFlag}/>
-            </MainContent>
-            <Footer/>
+            <DisplayingContainViewPage containViewPage={containViewPage} containClosedFlag={containClosedFlag} containNotFoundFlag={containNotFoundFlag}/>
         </>
     )
 }
 
 
-const MainContent = styled.div`
-    margin: 40px 0px 0px 120px;
-    font-family: 'Gilroy';
-    height: 60vh;
-`
-
-const Title = styled.h2`
-
-`
-const ContainerDisplayWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-`
 
 const ContainerTitle = styled.p`
     font-size: 24px;
     margin-bottom: 10px;
 `
-const ContainerEdited = styled.p`
-    font-size: 24px;
-    opacity: 0.7;
-    margin-bottom: 10px;
-`
-const ContainerCreated = styled.p`
-    font-size: 24px;
-    opacity: 0.7;
-    margin-bottom: 10px;
-`
-const ContainerDescription = styled.p`
-    font-size: 24px;
-    margin-bottom: 10px;
-`
+
 
 export default ContainerDisplayPage;

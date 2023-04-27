@@ -28,6 +28,7 @@ interface IPromiseCreateContain{
     contain_description: string;
     contain_private: string;
     user_id: string;
+    contain_author_login: string;
 }
 
 interface IPromiseGetContain{
@@ -47,7 +48,7 @@ interface IPromiseRegistrateArgBodyData{
     lastname: string;
     mail: string;
     login: string;
-    password: string,
+    password: string;
 }
 
 
@@ -138,10 +139,11 @@ export async function createContainMethod(
         .then((data)=>{
             console.log(data);
             if(data.ok){
-                navigate("/profile")
+                navigate("/container/" + body.contain_author_login + "/" + body.contain_title);
+                return true;
             }
             else{
-                return;
+                return false;
             }
         })
 }
