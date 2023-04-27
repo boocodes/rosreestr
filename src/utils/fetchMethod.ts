@@ -26,7 +26,7 @@ interface IPromiseLoginArgBodyData{
 interface IPromiseCreateContain{
     contain_title: string;
     contain_description: string;
-    contain_private: boolean;
+    contain_private: string;
     user_id: string;
 }
 
@@ -34,6 +34,13 @@ interface IPromiseGetContain{
     user_id: string;
     user_password: string;
 }
+
+interface IPromiseGetContainByUsernameAndContainName{
+    login: string;
+    contain_title: string;
+    master_user_id: string;
+}
+
 
 interface IPromiseRegistrateArgBodyData{
     firstname: string;
@@ -127,6 +134,7 @@ export async function createContainMethod(
     navigate: NavigateFunction
     ){
     await fetchMethod(method, body, url)
+
         .then((data)=>{
             console.log(data);
             if(data.ok){
@@ -138,7 +146,7 @@ export async function createContainMethod(
         })
 }
 
-export async function getContains(
+export async function getSelfContains(
     method: "POST",
     body: IPromiseGetContain,
     url: string,
@@ -155,6 +163,58 @@ export async function getContains(
             }
         })
         .then((response)=>{
-            dispatch(addContain({containArr: response.message.records}))
+            if(response){
+                console.log(response);
+                dispatch(addContain({containArr: response.message}))
+                return true;
+            }
+            else{
+                console.log(response);
+                dispatch(addContain({containArr: []}));
+                return false;
+            }
+
+        })
+}
+
+export async function getContainByUsernameAndContainName(
+    method: "POST",
+    body: IPromiseGetContainByUsernameAndContainName,
+    url: string,
+    dispatch: ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
+    changeContainerViewPage: any,
+    changeContainClosedFlag: any,
+    changeContainNotFoundFlag: any,
+    ){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            if(data.ok){
+                return data.json();
+            }
+            else{
+                return false
+            }
+        })
+        .then((response)=>{
+            if(response){
+                console.log(response);
+                if(response.message !== "Repository closed"){
+                    dispatch(changeContainerViewPage({containViewPage: response.message}));
+                    dispatch(changeContainClosedFlag({containClosedFlag: false}));
+                    dispatch(changeContainNotFoundFlag({containNotFoundFlag: false}));
+                }
+                else{
+                    dispatch(changeContainerViewPage({containViewPage: {}}));
+                    dispatch(changeContainClosedFlag({containClosedFlag: true}));
+                    dispatch(changeContainNotFoundFlag({containNotFoundFlag: false}));
+                }
+            }
+            else{
+                dispatch(changeContainerViewPage({containViewPage: {}}));
+                dispatch(changeContainClosedFlag({containClosedFlag: false}));
+                dispatch(changeContainNotFoundFlag({containNotFoundFlag: true}));
+            }
+
+
         })
 }

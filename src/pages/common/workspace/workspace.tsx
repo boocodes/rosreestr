@@ -7,9 +7,10 @@ import {selectContains} from "../../../redux/reducers/contain/selector";
 import {selectUserData} from "../../../redux/reducers/user/selector";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useEffect} from "react";
-import {getContains} from "../../../utils/fetchMethod";
+import {getSelfContains} from "../../../utils/fetchMethod";
 import {addContain} from "../../../redux/reducers/contain/reducer";
 import {isArrayEmpty} from "../../../utils/usefullMethods";
+import {changeUserAuthFlag} from "../../../redux/reducers/user/reducer";
 
 interface Props{
 
@@ -37,10 +38,10 @@ function WorkspacePage(props:Props){
             user_id: userData.user_id,
             user_password: userData.password,
         }
-        getContains("POST", objectData, "https://rosreestr/vendor/api/container/get_contain.php", dispatch, addContain);
+        getSelfContains("POST", objectData, "https://rosreestr/vendor/api/container/get_self_contains.php", dispatch, addContain);
     }, [])
 
-
+    console.log(containList);
   return(
       <>
           <Header/>
@@ -156,6 +157,8 @@ const LatestRepositoryContainerElemNotLink = styled.p`
     font-size: 15px;
     margin-bottom: 5px;
     text-decoration: none;
+    margin-top: 20px;
+    font-weight: 700;
 `
 const LatestRepositoryContainerListShowMoreButton = styled.button`
     background: none;

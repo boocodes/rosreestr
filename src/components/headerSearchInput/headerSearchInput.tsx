@@ -4,7 +4,7 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectContains} from "../../redux/reducers/contain/selector";
 import {selectUserData} from "../../redux/reducers/user/selector";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {getContains} from "../../utils/fetchMethod";
+import {getSelfContains} from "../../utils/fetchMethod";
 import {addContain} from "../../redux/reducers/contain/reducer";
 import {isArrayEmpty} from "../../utils/usefullMethods";
 
@@ -37,7 +37,7 @@ function AdditionalSearchMenu(){
             user_id: userData.user_id,
             user_password: userData.password,
         }
-        getContains("POST", objectData, "https://rosreestr/vendor/api/container/get_contain.php", dispatch, addContain);
+        getSelfContains("POST", objectData, "https://rosreestr/vendor/api/container/get_self_contains.php", dispatch, addContain);
     }, [])
 
     return(
@@ -46,7 +46,7 @@ function AdditionalSearchMenu(){
                     isArrayEmpty(containList) ? <AdditionalMenuItemElem>Ничего не найдено</AdditionalMenuItemElem> :
                     containList.map((elem:IContainsList)=>{
                         return (
-                            <AdditionalMenuItemList>
+                            <AdditionalMenuItemList key={elem.title}>
                                 <AdditionalMenuItemElem>{userData.login}/{elem.title}</AdditionalMenuItemElem>
                             </AdditionalMenuItemList>
                         )

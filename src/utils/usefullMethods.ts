@@ -2,7 +2,7 @@
 
 
 export function isArrayEmpty(array:any){
-    if(array.length){
+    if(array?.length){
        return false;
     }
     else{
@@ -12,7 +12,7 @@ export function isArrayEmpty(array:any){
 
 export function isObjectEmpty(obj:any){
     for (var i in obj) {
-        if (obj.hasOwnProperty(i)) {
+        if (obj?.hasOwnProperty(i)) {
             return false;
         }
     }
