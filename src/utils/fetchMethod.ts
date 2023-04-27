@@ -52,6 +52,10 @@ interface IPromiseRegistrateArgBodyData{
 }
 
 
+interface IPromiseGetViewPageByLogin{
+    login: string;
+}
+
 interface ILoginResponseSuccess {
     message: string
 }
@@ -98,7 +102,7 @@ export async function loginUserMethod (
             return response.json();
         })
         .then((data)=>{
-          if(data.message !== "Пользователь не найден"){
+          if(data.message !== "Error, user not found"){
             dispatch(changeUserData(data.message));
             dispatch(changeUserAuthFlag({authFlag: true}))
             navigate("/workspace");
@@ -199,7 +203,6 @@ export async function getContainByUsernameAndContainName(
         })
         .then((response)=>{
             if(response){
-                console.log(response);
                 if(response.message !== "Repository closed"){
                     dispatch(changeContainerViewPage({containViewPage: response.message}));
                     dispatch(changeContainClosedFlag({containClosedFlag: false}));
@@ -218,5 +221,38 @@ export async function getContainByUsernameAndContainName(
             }
 
 
+        })
+}
+
+
+export async function getViewPageByLogin(
+    method: "POST",
+    body: IPromiseGetViewPageByLogin,
+    url: string,
+    dispatch: ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
+    changeViewPageUserData: any,
+    ){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            if(data.ok){
+                return data.json();
+            }
+            else{
+                return false
+            }
+        })
+        .then((response)=>{
+            if(response){
+                if(response.message !== "User not found"){
+                    dispatch(changeViewPageUserData({viewPageUserData: response.message}))
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
         })
 }

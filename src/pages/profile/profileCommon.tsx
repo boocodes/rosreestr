@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectUserData} from "../../redux/reducers/user/selector";
+import {selectUserData, selectViewPageUserData} from "../../redux/reducers/user/selector";
 import Header from "../../ui/header/header";
 import Footer from "../../ui/footer/footer";
 import noAvatarIcon from "../../images/no-image-avatar.svg";
 import {Link, useLocation, useParams} from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import {getViewPageByLogin} from "../../utils/fetchMethod";
+import {getLastElemOfPath} from "../../utils/paramsMethods";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
+import {changeViewPageUserData} from "../../redux/reducers/user/reducer";
+import internal from "stream";
 
 
 interface Props{
@@ -14,15 +20,91 @@ interface Props{
 
 function ProfileCommonPage(props:Props){
 
-    const userData = useAppSelector(selectUserData)
+    const locaction = useLocation();
 
+    const dispatch = useAppDispatch();
+
+
+
+    useEffect(()=>{
+        const login = getLastElemOfPath(locaction.pathname);
+        const objectData = {
+            login,
+        }
+        getViewPageByLogin("POST", objectData, "https://rosreestr/vendor/api/user/get_user_page_by_login.php", dispatch, changeViewPageUserData);
+    }, [])
+
+
+    const userData = useAppSelector(selectUserData)
+    const file = useRef<HTMLInputElement>(null);
+
+    const [selectedFile, setSelectedFile] = useState("");
+
+    function cnag(event:any){
+        console.log(event.target.file);
+        event.preventDefault();
+        const userObjectData = {
+            password: userData.password,
+            login: userData.login,
+        }
+        let objectData = event.target.files[0];
+        objectData.user_password = userData.password;
+        objectData.user_login = userData.login;
+        setSelectedFile(objectData);
+        console.log(selectedFile);
+
+    }
+
+    useEffect(()=>{
+        if(selectedFile === "" || selectedFile === undefined){
+            return;
+        }
+        else{
+            let formData = new FormData();
+            //@ts-ignore
+            formData.append("filename", selectedFile);
+
+            interface IUserRequestData {
+                password: string;
+                login: string;
+            }
+
+            const userRequestData:IUserRequestData = {
+                password: userData.password,
+                login: userData.login,
+            }
+
+            // @ts-ignore
+            formData.append("userdata", userRequestData);
+            fetch("https://rosreestr/vendor/api/user/update_user_avatar.php", {
+                method: "POST",
+                // @ts-ignore
+                body: formData,
+
+            });
+        }
+    },[selectedFile])
+
+    function sendFile(event:any){
+        event.preventDefault();
+
+
+
+    }
+
+
+    const userViewPageData = useAppSelector(selectViewPageUserData);
     return(
         <>
                 <AboutUserWrapper>
-                    <UserImage><img src={noAvatarIcon}/></UserImage>
+                    <form method={"POST"} action={"update_user_avatar.php"} onSubmit={sendFile}>
+                        <input name={"filename"} onChange={cnag} ref={file} onSubmit={sendFile} type={"file"}/>
+                    </form>
+
+                    <UserImage src={userViewPageData.avatar_src} alt={"Картинка пользователя"}></UserImage>
                     <UserDataTextFieldWrapper>
-                        <UserFirstname>{userData.firstname}</UserFirstname>
-                        <UserLogin>{userData.login}</UserLogin>
+                        <UserFirstname>{userViewPageData.firstname}</UserFirstname>
+                        <UserLogin>{userViewPageData.login}</UserLogin>
                     </UserDataTextFieldWrapper>
                     <EditUserDataButtonWrapper>
                         <EditUserDataButton>Изменить</EditUserDataButton>
@@ -46,10 +128,10 @@ const AboutUserWrapper = styled.div`
 `
 
 
-const UserImage = styled.div`
+const UserImage = styled.img`
     width: 200px;
     height: 200px;
-    border-radius: 5px; 
+    border-radius: 15px; 
 `
 const UserDataTextFieldWrapper = styled.div`
     margin-top: 25px;

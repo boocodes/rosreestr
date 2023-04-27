@@ -9,6 +9,8 @@ import {useEffect, useState} from "react";
 import {getLastElemOfPath} from "../../utils/paramsMethods";
 import ProjectsProfileTab from "./profileTabs/projects";
 import PackagesProfileTab from "./profileTabs/packages";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectViewPageUserData} from "../../redux/reducers/user/selector";
 
 
 interface Props{
@@ -41,7 +43,7 @@ function DisplayingTabCase(props:IDisplayinTabCase){
 function ProfilePage(props:Props){
 
     const location = useLocation();
-
+    const viewPageUserData = useAppSelector(selectViewPageUserData);
     const [locationPath, setLocationPath] = useState("overview");
 
     useEffect(()=>{
@@ -55,10 +57,10 @@ function ProfilePage(props:Props){
                <ProfileCommonPage/>
                <WorkspaceWrapper>
                    <WorkspaceWrapperHeader>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={"./overview"}>Предпросмотр</WorkspaceWrapperHeaderElement>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={"./contains"}>Контейнеры</WorkspaceWrapperHeaderElement>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={"./projects"}>Проекты</WorkspaceWrapperHeaderElement>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={"./packages"}>Пакеты</WorkspaceWrapperHeaderElement>
+                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/overview"}>Предпросмотр</WorkspaceWrapperHeaderElement>
+                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/contains"}>Контейнеры</WorkspaceWrapperHeaderElement>
+                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/projects"}>Проекты</WorkspaceWrapperHeaderElement>
+                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "./packages"}>Пакеты</WorkspaceWrapperHeaderElement>
                    </WorkspaceWrapperHeader>
                    <DisplayingTabCase tab={locationPath}/>
                </WorkspaceWrapper>

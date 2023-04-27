@@ -21,7 +21,7 @@ function PopupUserCabinetLinkMenu(props:Props){
             </Title>
             <UndertitleLine/>
             <AdditionalMenu>
-                <AdditionalMenuItem onClick={()=>props.setPopularUserCabinetFlag(false)} to={"/profile"}>Ваш аккаунт</AdditionalMenuItem>
+                <AdditionalMenuItem onClick={()=>props.setPopularUserCabinetFlag(false)} to={"/profile/" + userData.login}>Ваш аккаунт</AdditionalMenuItem>
                 <AdditionalMenuItem onClick={()=>props.setPopularUserCabinetFlag(false)} to={"/settings/common"}>Настройки</AdditionalMenuItem>
                 <AdditionalMenuItem onClick={()=>props.setPopularUserCabinetFlag(false)} to={"/logout"}>Выйти</AdditionalMenuItem>
             </AdditionalMenu>

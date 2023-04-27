@@ -34,35 +34,6 @@ interface IContainViewPage{
     description: string;
 }
 
-interface IDisplayingContainViewPage{
-    containViewPage: IContainViewPage;
-    containClosedFlag: boolean;
-    containNotFoundFlag: boolean;
-}
-
-function DisplayingContainViewPage(props:IDisplayingContainViewPage){
-    return (
-        <>
-            {
-                props.containNotFoundFlag ?
-                    <h1>Контейнер не найден!</h1>
-                    :
-                    props.containClosedFlag ?
-                        <ContainerTitle>
-                            Контейнер приватен, запросите разрешение у владельца
-                        </ContainerTitle>
-                        :
-                        isObjectEmpty(props.containViewPage) ?
-                            <ContainerTitle>
-                                Ничего не найден
-                            </ContainerTitle>
-                            :
-                            <ContainerDisplayInner/>
-            }
-        </>
-    )
-}
-
 
 function ContainerDisplayPage(props:Props){
     const dispatch = useDispatch();
@@ -80,9 +51,39 @@ function ContainerDisplayPage(props:Props){
        getContainByUsernameAndContainName("POST", objectData, "https://rosreestr/vendor/api/container/get_contain_by_login.php", dispatch, changeContainerViewPage, changeContainClosedFlag, changeContainNotFoundFlag);
     }, [])
     return (
-        <>
-            <DisplayingContainViewPage containViewPage={containViewPage} containClosedFlag={containClosedFlag} containNotFoundFlag={containNotFoundFlag}/>
-        </>
+            <>
+                {
+                    containNotFoundFlag ?
+                        <>
+                            <Header/>
+                            <ContainerTitle>
+                                Ничего не найден
+                            </ContainerTitle>
+                            <Footer/>
+                        </>
+                        :
+                        containClosedFlag ?
+                            <>
+                                <Header/>
+                                <ContainerTitle>
+                                    Контейнер приватен, запросите разрешение у владельца
+                                </ContainerTitle>
+                                <Footer/>
+                            </>
+
+                            :
+                            isObjectEmpty(containViewPage) ?
+                                <>
+                                    <Header/>
+                                    <ContainerTitle>
+                                        Ничего не найдено
+                                    </ContainerTitle>
+                                    <Footer/>
+                                </>
+                                :
+                                <ContainerDisplayInner/>
+                }
+            </>
     )
 }
 
@@ -90,7 +91,9 @@ function ContainerDisplayPage(props:Props){
 
 const ContainerTitle = styled.p`
     font-size: 24px;
+    font-family: 'Gilroy';
     margin-bottom: 10px;
+    margin: 50px 0px 70px 70px;
 `
 
 

@@ -6,3 +6,7 @@ export function selectUserAuthFlag(state:RootState){
 export function selectUserData(state:RootState){
     return state.user;
 }
+
+export function selectViewPageUserData(state:RootState){
+    return state.user.viewPageUserData;
+}
