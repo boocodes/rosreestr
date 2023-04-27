@@ -24,7 +24,6 @@ function NewContainerForm(props:Props){
         //@ts-ignore
         if(!!formRef.current?.children[0].children[1].value.trim()){
             setButtonActiveFlag(true)
-            console.log("fdsfs")
         }
         else{
             setButtonActiveFlag(false);
@@ -51,10 +50,10 @@ function NewContainerForm(props:Props){
                 //@ts-ignore
                 contain_description :formRef.current[1].value,
                 //@ts-ignore
-                contain_private :formRef.current[3].checked,
+                contain_private :(formRef.current[3].checked)+"",
                 user_id: userData.user_id,
             }
-            console.log(userData);
+
             createContainMethod("POST",objectData, "https://rosreestr/vendor/api/container/create_contain.php", navigate);
         }
         else{

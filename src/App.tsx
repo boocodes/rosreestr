@@ -14,6 +14,7 @@ import ProfilePage from "./pages/profile/profile";
 import NotFoundPage from "./pages/common/notFound";
 import AddContainerPage from "./pages/common/containers/addContainer";
 import LogoutPage from "./pages/common/logout";
+import ContainerDisplayPage from "./pages/common/containers/containerDisplay";
 
 function App() {
 
@@ -70,6 +71,10 @@ function App() {
             <Route
                 path={"/settings/*"}
                 element={userAuthFlag ? <ProfileSettingsPage/> : <Navigate to={"/login"}/>}
+            />
+            <Route
+                path={"/container/*"}
+                element={<ContainerDisplayPage/>}
             />
         </Routes>
    </>
