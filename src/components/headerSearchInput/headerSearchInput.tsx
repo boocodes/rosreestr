@@ -31,7 +31,6 @@ function AdditionalSearchMenu(){
     const containList = useAppSelector(selectContains);
     const userData = useAppSelector(selectUserData);
     const dispatch = useAppDispatch();
-    console.log(containList);
     useEffect(()=>{
         const objectData = {
             user_id: userData.user_id,
@@ -61,7 +60,6 @@ function HeaderSearchInput(props:Props){
 
     const [additionalMenuFlag, setAdditionalMenuFlag] = useState(false);
 
-    console.log(additionalMenuFlag);
 
     return(
         <Root wide={additionalMenuFlag}>

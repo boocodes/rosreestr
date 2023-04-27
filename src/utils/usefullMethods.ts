@@ -18,3 +18,15 @@ export function isObjectEmpty(obj:any){
     }
     return true;
 }
+
+export function getBooleanFromTextBoolean(textBoolean: string){
+    if(textBoolean === "false" || textBoolean === "False" || textBoolean === "FALSE"){
+        return false;
+    }
+    else if(textBoolean === "true" || textBoolean === "True" || textBoolean === "TRUE"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}

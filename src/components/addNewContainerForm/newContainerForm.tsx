@@ -52,6 +52,7 @@ function NewContainerForm(props:Props){
                 //@ts-ignore
                 contain_private :(formRef.current[3].checked)+"",
                 user_id: userData.user_id,
+                contain_author_login: userData.login,
             }
 
             createContainMethod("POST",objectData, "https://rosreestr/vendor/api/container/create_contain.php", navigate);
