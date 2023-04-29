@@ -32,8 +32,7 @@ function ProfileCommonPage(props:Props){
 
 
 
-    function cnag(event:any){
-        console.log(event.target.file);
+    function send(event:any){
         event.preventDefault();
         const userObjectData = {
             password: userData.password,
@@ -43,11 +42,11 @@ function ProfileCommonPage(props:Props){
         objectData.user_password = userData.password;
         objectData.user_login = userData.login;
         setSelectedFile(objectData);
-        console.log(selectedFile);
 
     }
 
     useEffect(()=>{
+        console.log(userData);
         if(selectedFile === "" || selectedFile === undefined){
             return;
         }
@@ -68,7 +67,6 @@ function ProfileCommonPage(props:Props){
 
             // @ts-ignore
             formData.append("userdata", userRequestData);
-            console.log(userData.login + ", " + userData.password);
             fetch("https://rosreestr/vendor/api/user/update_user_avatar.php", {
                 method: "POST",
                 body: formData,
@@ -89,9 +87,6 @@ function ProfileCommonPage(props:Props){
 
     function sendFile(event:any){
         event.preventDefault();
-
-
-
     }
 
 
@@ -100,7 +95,7 @@ function ProfileCommonPage(props:Props){
         <>
                 <AboutUserWrapper>
                     <FormAvatar method={"POST"} action={"update_user_avatar.php"} onSubmit={sendFile}>
-                        <input name={"filename"} onChange={cnag} ref={file} accept={".jpg, .jpeg, .png"} onSubmit={sendFile} type={"file"}/>
+                        <input name={"filename"} onChange={send} ref={file} accept={".jpg, .jpeg, .png"} onSubmit={sendFile} type={"file"}/>
                     </FormAvatar>
 
                     <UserImage src={userViewPageData.avatar_src} alt={"Картинка пользователя"}></UserImage>

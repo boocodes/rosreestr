@@ -60,7 +60,7 @@ function ProfilePage(props:Props){
         }
         getViewPageByLogin("POST", objectData, "https://rosreestr/vendor/api/user/get_user_page_by_login.php", dispatch, changeViewPageUserData);
     }, [])
-    console.log(viewPageUserData);
+
     return(
        <>
            <Header/>
