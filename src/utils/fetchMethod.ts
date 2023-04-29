@@ -56,6 +56,17 @@ interface IPromiseGetViewPageByLogin{
     login: string;
 }
 
+interface IPromiseUpdateUserFields{
+    login: string;
+    password: string;
+    firstname: string;
+    mail: string;
+    about: string;
+    url_link_social: string;
+    organisation: string;
+    location: string;
+}
+
 interface ILoginResponseSuccess {
     message: string
 }
@@ -254,6 +265,33 @@ export async function getViewPageByLogin(
             }
             else{
                 dispatch(changeViewPageUserData({viewPageUserData: {}}));
+                return false;
+            }
+        })
+}
+
+export async function updateUserFields(
+    method: "POST",
+    body: IPromiseUpdateUserFields,
+    url: string,
+    dispatch: ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
+    changeUserData: any,
+    ){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            if(data.ok){
+                return data.json();
+            }
+            else{
+                return false;
+            }
+        })
+        .then((response)=>{
+            if(response){
+                dispatch(changeUserData(response.message));
+                return true;
+            }
+            else{
                 return false;
             }
         })

@@ -3,6 +3,10 @@ import {Link} from "react-router-dom";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {selectUserData} from "../../../../redux/reducers/user/selector";
 import {useRef} from "react";
+import {updateUserFields} from "../../../../utils/fetchMethod";
+import {useAppDispatch} from "../../../../hooks/useAppDispatch";
+import {changeUserData} from "../../../../redux/reducers/user/reducer";
+
 
 interface Props{
 
@@ -10,13 +14,47 @@ interface Props{
 
 
 function CommonSettingsTab(props:Props){
-
+    const dispatch = useAppDispatch();
     const userData = useAppSelector(selectUserData);
 
     const settingsForm = useRef<HTMLFormElement>(null);
 
     function handleSumbit(event:React.FormEvent<HTMLFormElement>){
         event.preventDefault();
+        if(
+            //@ts-ignore
+            !settingsForm.current?.elements[0].value?.trim() ||
+            //@ts-ignore
+            !settingsForm.current?.elements[0].value?.trim() ||
+            //@ts-ignore
+            !settingsForm.current?.elements[2].value?.trim() ||
+            //@ts-ignore
+            !settingsForm.current?.elements[3].value?.trim() ||
+            //@ts-ignore
+            !settingsForm.current?.elements[4].value?.trim() ||
+            //@ts-ignore
+            !settingsForm.current?.elements[5].value?.trim()
+        ) return;
+
+        const objectData = {
+            password: userData.password,
+            login: userData.login,
+            // @ts-ignore
+            firstname: settingsForm.current?.elements[0].value,
+            // @ts-ignore
+            mail: settingsForm.current?.elements[1].value,
+            // @ts-ignore
+            about: settingsForm.current?.elements[2].value,
+            // @ts-ignore
+            url_link_social: settingsForm.current?.elements[3].value,
+            // @ts-ignore
+            organisation: settingsForm.current?.elements[4].value,
+            // @ts-ignore
+            location: settingsForm.current?.elements[5].value,
+
+        }
+        updateUserFields("POST", objectData, "https://rosreestr/vendor/api/user/update_user_fields.php", dispatch, changeUserData);
+        console.log(objectData);
     }
 
     return(
@@ -25,7 +63,7 @@ function CommonSettingsTab(props:Props){
                 <DataSettingsTitleText>Открытые данные</DataSettingsTitleText>
                 <DataSettingsUnderTitleLine/>
             </DataSettingsTitleWrapper>
-            <DataSettingsForm onSubmit={handleSumbit}>
+            <DataSettingsForm ref={settingsForm} onSubmit={handleSumbit}>
                 <DataSettingsNameInputWrapper>
                     <DataSettingsNameLabel>Имя</DataSettingsNameLabel>
                     <DataSettingsNameInput defaultValue={userData.firstname}/>
