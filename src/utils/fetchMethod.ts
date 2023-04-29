@@ -128,6 +128,8 @@ export async function loginUserMethod (
 export async function registrateUserMethod(
     method: string,
     body: IPromiseRegistrateArgBodyData,
+    dispatch: ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
+    changeUserAlreadyExistFlag: any,
     url: string,
     navigate: NavigateFunction,
     ){
@@ -138,6 +140,7 @@ export async function registrateUserMethod(
                 navigate("/login");
             }
             else{
+                dispatch(changeUserAlreadyExistFlag(true));
                 return;
             }
         })

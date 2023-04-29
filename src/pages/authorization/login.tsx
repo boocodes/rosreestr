@@ -31,9 +31,7 @@ interface ILoginResponseSuccess{
         user_id: string;
     }
 }
-interface ILoginFail{
-    "message": string;
-}
+
 
 function LoginPage(props:Props) {
     const navigate = useNavigate();
@@ -53,8 +51,8 @@ function LoginPage(props:Props) {
         loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate, dispatch, changeUserAuthFlag, changeUserData, changeWrongPasswordOrLoginFlag);
     }
 
-        const wrongPasswordModalFlag = useAppSelector(selectModalWindowsFlags);
-        console.log(wrongPasswordModalFlag.wrongPasswordOrLogin);
+        const modalWindowsFlag = useAppSelector(selectModalWindowsFlags);
+
         return (
             <>
                 <ExternalWrapper>
@@ -78,7 +76,7 @@ function LoginPage(props:Props) {
                     </LoginFormWrapper>
                 </ExternalWrapper>
                 {
-                    wrongPasswordModalFlag.wrongPasswordOrLogin ?
+                    modalWindowsFlag.wrongPasswordOrLogin ?
                         <WrongPasswordModal/>
                         :
                         null

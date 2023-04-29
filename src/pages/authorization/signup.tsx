@@ -5,13 +5,21 @@ import {useRef} from "react";
 import {registrateUserMethod} from "../../utils/fetchMethod";
 import {useNavigate} from "react-router-dom";
 import {Link} from "react-router-dom";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectModalWindowsFlags} from "../../redux/reducers/modalWindows/selector";
+import WrongPasswordModal from "../../ui/modal/wrongPassword/wrongPasswordModal";
+import UserAlreadyExistModal from "../../ui/modal/userAlreadyExist/userAlreayExistModal";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
+import {changeUserAlreadyExistFlag} from "../../redux/reducers/modalWindows/reducer";
 
 interface Props{
 
 }
 
 function RegistrationPage(props:Props){
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const modalWindowsFlag = useAppSelector(selectModalWindowsFlags);
     const regForm = useRef<HTMLFormElement>(null);
 
     function submitForm(event:React.FormEvent<HTMLFormElement>){
@@ -31,30 +39,38 @@ function RegistrationPage(props:Props){
 
         }
 
-        registrateUserMethod("POST", object, "https://rosreestr/vendor/api/user/registration.php", navigate);
+        registrateUserMethod("POST", object, dispatch, changeUserAlreadyExistFlag, "https://rosreestr/vendor/api/user/registration.php", navigate);
     }
 
 
     return(
-        <ExternalWrapper>
-            <GoBackWrapper>
-                <GoBackButtonLink to={"/welcome"}>Вернуться</GoBackButtonLink>
-            </GoBackWrapper>
-            <LoginFormWrapper>
-                <LoginForm ref={regForm} method={"POST"} onSubmit={submitForm} >
-                    <LastNameAndFirstNameInputWrapper>
-                        <FirstnameInput placeholder={"Имя"} type={"text"} />
-                        <LastnameInput placeholder={"Фамилия"} type={"text"} />
-                    </LastNameAndFirstNameInputWrapper>
-                    <LoginInput placeholder={"Имя пользователя"} type={"text"}/>
-                    <EmailInput placeholder={"Электронная почта"} type={"email"}/>
-                    <PasswordInput placeholder={"Пароль"} type={"password"}/>
-                    <SubmitButtonWrapper>
-                        <SubmitButton type={"submit"} value={"Отправить"}/>
-                    </SubmitButtonWrapper>
-                </LoginForm>
-            </LoginFormWrapper>
-        </ExternalWrapper>
+        <>
+            <ExternalWrapper>
+                <GoBackWrapper>
+                    <GoBackButtonLink to={"/welcome"}>Вернуться</GoBackButtonLink>
+                </GoBackWrapper>
+                <LoginFormWrapper>
+                    <LoginForm ref={regForm} method={"POST"} onSubmit={submitForm} >
+                        <LastNameAndFirstNameInputWrapper>
+                            <FirstnameInput placeholder={"Имя"} type={"text"} />
+                            <LastnameInput placeholder={"Фамилия"} type={"text"} />
+                        </LastNameAndFirstNameInputWrapper>
+                        <LoginInput placeholder={"Имя пользователя"} type={"text"}/>
+                        <EmailInput placeholder={"Электронная почта"} type={"email"}/>
+                        <PasswordInput placeholder={"Пароль"} type={"password"}/>
+                        <SubmitButtonWrapper>
+                            <SubmitButton type={"submit"} value={"Отправить"}/>
+                        </SubmitButtonWrapper>
+                    </LoginForm>
+                </LoginFormWrapper>
+            </ExternalWrapper>
+            {
+                modalWindowsFlag.userAlreadyExist ?
+                    <UserAlreadyExistModal/>
+                    :
+                    null
+            }
+        </>
     )
 }
 
