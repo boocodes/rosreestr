@@ -11,7 +11,10 @@ import ProjectsProfileTab from "./profileTabs/projects";
 import PackagesProfileTab from "./profileTabs/packages";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectViewPageUserData} from "../../redux/reducers/user/selector";
-
+import {getViewPageByLogin} from "../../utils/fetchMethod";
+import {changeViewPageUserData} from "../../redux/reducers/user/reducer";
+import {useDispatch} from "react-redux";
+import {isObjectEmpty} from "../../utils/usefullMethods";
 
 interface Props{
 
@@ -41,7 +44,7 @@ function DisplayingTabCase(props:IDisplayinTabCase){
 
 
 function ProfilePage(props:Props){
-
+    const dispatch = useDispatch();
     const location = useLocation();
     const viewPageUserData = useAppSelector(selectViewPageUserData);
     const [locationPath, setLocationPath] = useState("overview");
@@ -50,20 +53,40 @@ function ProfilePage(props:Props){
         setLocationPath(getLastElemOfPath(location.pathname));
     }, [location.pathname])
 
+    useEffect(()=>{
+        const login = getLastElemOfPath(location.pathname);
+        const objectData = {
+            login,
+        }
+        getViewPageByLogin("POST", objectData, "https://rosreestr/vendor/api/user/get_user_page_by_login.php", dispatch, changeViewPageUserData);
+    }, [])
+    console.log(viewPageUserData);
     return(
        <>
            <Header/>
            <MainContent>
-               <ProfileCommonPage/>
-               <WorkspaceWrapper>
-                   <WorkspaceWrapperHeader>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/overview"}>Предпросмотр</WorkspaceWrapperHeaderElement>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/contains"}>Контейнеры</WorkspaceWrapperHeaderElement>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/projects"}>Проекты</WorkspaceWrapperHeaderElement>
-                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "./packages"}>Пакеты</WorkspaceWrapperHeaderElement>
-                   </WorkspaceWrapperHeader>
-                   <DisplayingTabCase tab={locationPath}/>
-               </WorkspaceWrapper>
+               <>
+                   {
+
+                       isObjectEmpty(viewPageUserData) ?
+                           <h1>Пользователь не найден</h1>
+                           :
+                           <>
+                               <ProfileCommonPage/>
+                               <WorkspaceWrapper>
+                                   <WorkspaceWrapperHeader>
+                                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/overview"}>Предпросмотр</WorkspaceWrapperHeaderElement>
+                                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/contains"}>Контейнеры</WorkspaceWrapperHeaderElement>
+                                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "/projects"}>Проекты</WorkspaceWrapperHeaderElement>
+                                       <WorkspaceWrapperHeaderElement tab={locationPath} to={viewPageUserData.login + "./packages"}>Пакеты</WorkspaceWrapperHeaderElement>
+                                   </WorkspaceWrapperHeader>
+                                   <DisplayingTabCase tab={locationPath}/>
+                               </WorkspaceWrapper>
+                           </>
+                   }
+
+
+               </>
            </MainContent>
            <Footer/>
        </>

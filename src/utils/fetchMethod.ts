@@ -248,10 +248,12 @@ export async function getViewPageByLogin(
                     return true;
                 }
                 else{
+                    dispatch(changeViewPageUserData({viewPageUserData: {}}));
                     return false;
                 }
             }
             else{
+                dispatch(changeViewPageUserData({viewPageUserData: {}}));
                 return false;
             }
         })

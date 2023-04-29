@@ -11,6 +11,7 @@ interface IContainElem{
     created: string;
     contain_id: string;
     description: string;
+    contain_author_login: string;
 }
 
 interface IAddContain{

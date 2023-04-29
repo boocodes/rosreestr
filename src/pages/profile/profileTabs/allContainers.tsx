@@ -24,6 +24,7 @@ interface IContainsList{
     created: string;
     contain_id: string;
     description: string;
+    contain_author_login: string;
 }
 
 interface IDisplayingContainsListProps{
@@ -37,7 +38,7 @@ function DisplayingContainsList(props:IDisplayingContainsListProps){
             {
                 props.containList.map((elem:IContainsList)=>{
                     return(
-                        <RecentContainsListElemWrapper key={elem.title}>
+                        <RecentContainsListElemWrapper to={"/container/" + elem.contain_author_login + "/" + elem.title} key={elem.title}>
                             <RecentContainsListElemTitlePlusDescriptionWrapper>
                                 <RecentContainsListElemTitle>
                                     Название: {elem.title}
@@ -93,7 +94,9 @@ const RecentContainsListWrapper = styled.div`
 
 `
 
-const RecentContainsListElemWrapper = styled.div`
+const RecentContainsListElemWrapper = styled(Link)`
+    text-decoration: none;
+    color: black;
     margin-top: 40px;
     :first-child{
         margin-top: 0px;

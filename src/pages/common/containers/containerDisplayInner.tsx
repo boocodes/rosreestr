@@ -67,7 +67,7 @@ function ContainerDisplayInner(props:Props){
                         <TitleWrapper>
                             <ContainerMainDataTitle>
                                 <TitleAuthorLogin>
-                                    <TitleAuthorLoginLink to={"/" + containViewPage.contain_author_login}>
+                                    <TitleAuthorLoginLink to={"/profile/" + containViewPage.contain_author_login}>
                                         {containViewPage.contain_author_login}
                                     </TitleAuthorLoginLink>
                                 </TitleAuthorLogin>

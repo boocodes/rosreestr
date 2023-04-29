@@ -20,25 +20,17 @@ interface Props{
 
 function ProfileCommonPage(props:Props){
 
-    const locaction = useLocation();
+    const location = useLocation();
 
     const dispatch = useAppDispatch();
+    const [selectedFile, setSelectedFile] = useState("");
 
-
-
-    useEffect(()=>{
-        const login = getLastElemOfPath(locaction.pathname);
-        const objectData = {
-            login,
-        }
-        getViewPageByLogin("POST", objectData, "https://rosreestr/vendor/api/user/get_user_page_by_login.php", dispatch, changeViewPageUserData);
-    }, [])
 
 
     const userData = useAppSelector(selectUserData)
     const file = useRef<HTMLInputElement>(null);
 
-    const [selectedFile, setSelectedFile] = useState("");
+
 
     function cnag(event:any){
         console.log(event.target.file);
@@ -76,12 +68,22 @@ function ProfileCommonPage(props:Props){
 
             // @ts-ignore
             formData.append("userdata", userRequestData);
+            console.log(userData.login + ", " + userData.password);
             fetch("https://rosreestr/vendor/api/user/update_user_avatar.php", {
                 method: "POST",
-                // @ts-ignore
                 body: formData,
+                headers: {
+                        "Authorization": userData.login + " " + userData.password,
+                },
 
-            });
+            })
+                .then(()=>{
+                    const login = getLastElemOfPath(location.pathname);
+                    const objectData = {
+                        login,
+                    }
+                    getViewPageByLogin("POST", objectData, "https://rosreestr/vendor/api/user/get_user_page_by_login.php", dispatch, changeViewPageUserData);
+                })
         }
     },[selectedFile])
 
@@ -97,9 +99,9 @@ function ProfileCommonPage(props:Props){
     return(
         <>
                 <AboutUserWrapper>
-                    <form method={"POST"} action={"update_user_avatar.php"} onSubmit={sendFile}>
-                        <input name={"filename"} onChange={cnag} ref={file} onSubmit={sendFile} type={"file"}/>
-                    </form>
+                    <FormAvatar method={"POST"} action={"update_user_avatar.php"} onSubmit={sendFile}>
+                        <input name={"filename"} onChange={cnag} ref={file} accept={".jpg, .jpeg, .png"} onSubmit={sendFile} type={"file"}/>
+                    </FormAvatar>
 
                     <UserImage src={userViewPageData.avatar_src} alt={"Картинка пользователя"}></UserImage>
                     <UserDataTextFieldWrapper>
@@ -171,7 +173,9 @@ const AchievmentsListWrapper = styled.div`
 const AchievmentsListElem = styled.div`
 
 `
-
+const FormAvatar = styled.form`
+    margin-bottom: 20px;
+`
 
 
 export default ProfileCommonPage;
