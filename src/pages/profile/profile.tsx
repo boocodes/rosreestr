@@ -58,7 +58,7 @@ function ProfilePage(props:Props){
         const objectData = {
             login,
         }
-        getViewPageByLogin("POST", objectData, "https://rosreestr/vendor/api/user/get_user_page_by_login.php", dispatch, changeViewPageUserData);
+        getViewPageByLogin("POST", objectData, "https://rosreestr/api/user/get_user_page_by_login.php", dispatch, changeViewPageUserData);
     }, [])
 
     return(

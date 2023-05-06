@@ -53,8 +53,7 @@ function CommonSettingsTab(props:Props){
             location: settingsForm.current?.elements[5].value,
 
         }
-        updateUserFields("POST", objectData, "https://rosreestr/vendor/api/user/update_user_fields.php", dispatch, changeUserData);
-        console.log(objectData);
+        updateUserFields("POST", objectData, "https://rosreestr/api/user/update_user_fields.php", dispatch, changeUserData);
     }
 
     return(
