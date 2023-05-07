@@ -85,7 +85,7 @@ function ContainCodeTab(props:Props){
     const [createNewFileModalFlag, setCreateNewFileModalFlag] = useState(false);
     const [addNewFilesModalFlag, setAddNewFilesModalFlag] = useState(false);
     const [uploadedFiles, setUploadedFiles] = useState<IUploadedFiles[]>([]);
-    const [addNewFileMenuFlag, setAddNewFileMenuFlag] = useState(true);
+    const [addNewFileMenuFlag, setAddNewFileMenuFlag] = useState(false);
     const [selectedFile, setSelectedFile] = useState("");
     const refForm = useRef<HTMLFormElement>(null);
     const refInput = useRef<HTMLInputElement>(null);
@@ -119,12 +119,12 @@ function ContainCodeTab(props:Props){
     return(
         <>
             {createNewFileModalFlag ?
-                <CreateNewFileModal changeModalFlag={setCreateNewFileModalFlag}/>
+                <CreateNewFileModal repositoryName={"main"} branchName={"init"} changeModalFlag={setCreateNewFileModalFlag}/>
                 :
                 null
             }
             {addNewFilesModalFlag ?
-                <AddNewFilesModal changeModalFlag={setAddNewFilesModalFlag}/>
+                <AddNewFilesModal repositoryName={"main"} changeModalFlag={setAddNewFilesModalFlag}/>
                 :
                 null
             }
@@ -286,6 +286,7 @@ const AddNewElemMenuElemLink = styled.p`
     cursor: pointer;
     :hover{
         background-color: #0969da;
+        color: white;
     }
     padding: 5px 15px;
     
