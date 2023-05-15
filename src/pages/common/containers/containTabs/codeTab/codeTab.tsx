@@ -6,6 +6,7 @@ import {useRef, useState} from "react";
 import CodeDisplayingWrapper from "./codeDisplayingWrapper";
 import AddNewFilesModal from "./addNewFilesModal";
 import CreateNewFileModal from "./createNewFileModal";
+import CloseIcon from "../../../../../images/closeIcon.jpg";
 
 interface Props{
 
@@ -32,12 +33,15 @@ function ShowUploadedFiles(props:IShowUploadedFiles){
                 {props.date.map((elem:IUploadedFiles)=>{
                     return (
                         <UploadedFileElemWrapper key={props.date.indexOf(elem)}>
-                            <UploadedFileName>
-                                {elem.elemName}
-                            </UploadedFileName>
-                            <UploadedFileParent>
-                                {elem.parentFolderName}
-                            </UploadedFileParent>
+                           <UploadedFileElemExternalWrapper>
+                               <UploadedFileName>
+                                   Файл - <b>{elem.elemName}</b>
+                               </UploadedFileName>
+                               <UploadedFileParent>
+                                   Родительский элемент - <b>{elem.parentFolderName}</b>
+                               </UploadedFileParent>
+                           </UploadedFileElemExternalWrapper>
+                           <DeleteUploadedFileIcon src={CloseIcon}/>
                         </UploadedFileElemWrapper>
                     )
                 })}
@@ -320,17 +324,33 @@ const BranchCountsTitleBoldSpan = styled.span`
 
 
 const UploadedFilesWrapper = styled.div`
-
+    margin-top: 30px;
+   
 `
 
 const UploadedFileElemWrapper = styled.div`
+    display: flex;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d0d7de;
+    border-radius: 5px;
+    padding: 10px 15px;
+   
+`
+const UploadedFileElemExternalWrapper = styled.div`
 
 `
-const UploadedFileName = styled.p`
 
+const UploadedFileName = styled.p`
 `
 const UploadedFileParent = styled.p`
 
+`
+const DeleteUploadedFileIcon = styled.img`
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
 `
 
 
