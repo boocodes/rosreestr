@@ -106,8 +106,11 @@ function ContainCodeTab(props:Props){
 
         }
 
+        formData.set("title", "nick");
         console.log(uploadedFiles);
+        console.log(formData, " 111");
         fetch("https://rosreestr/api/container/upload_contains_files.php", {
+            // @ts-ignore
             body: formData,
             // headers: {
             //     "Content-Type": "multipart/form-data",

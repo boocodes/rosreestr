@@ -10,8 +10,7 @@ interface Props{
 
 
 function CodeDisplayingWrapper(props:Props){
-
-
+    console.log(props);
     return(
         <ExternalWrapper>
             <HeaderWrapper>
