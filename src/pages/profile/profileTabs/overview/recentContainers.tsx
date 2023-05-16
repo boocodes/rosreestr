@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import PopularRepositioriesBlock from "./popularSection/popularRepositoriesBlock";
+import ContributionBlock from "./contributionSection/contributionBlock";
 
 
 
@@ -12,10 +14,8 @@ function RecentContainersProfileTab(props:Props){
     return(
         <WorkspaceWrapper>
             <RecentContainsWrapper>
-                <RecentContainsWrapperTitle>Недавние контейнеры</RecentContainsWrapperTitle>
-                <RecentContainsListWrapper>
-                    <RecentContainsListElem></RecentContainsListElem>
-                </RecentContainsListWrapper>
+                <PopularRepositioriesBlock/>
+                <ContributionBlock contributionCount={300}/>
             </RecentContainsWrapper>
 
         </WorkspaceWrapper>
@@ -25,22 +25,11 @@ function RecentContainersProfileTab(props:Props){
 const RecentContainsWrapper = styled.div`
     margin-top: 50px;
 `
-const RecentContainsWrapperTitle = styled.p`
-    font-size: 22px;
-    
-`
-const RecentContainsListWrapper = styled.div`
-
-`
-const RecentContainsListElem = styled.p`
-
-`
 
 
 const WorkspaceWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    margin-left: 70px;
     font-family: 'Gilroy';
 `
 
