@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Link, Route, Routes, useLocation, useParams} from "react-router-dom";
 import ProfileCommonPage from "./profileCommon";
 import RecentContainersProfileTab from './profileTabs/overview/recentContainers';
-import AllContainersProfileTab from "./profileTabs/allContainers";
+import AllContainersProfileTab from "./profileTabs/containers/allContainers";
 import Header from "../../ui/header/header";
 import Footer from "../../ui/footer/footer";
 import {useEffect, useState} from "react";
@@ -96,7 +96,6 @@ function ProfilePage(props:Props){
 
 const MainContent = styled.div`
     width: 1400px;
-    
     display: flex;
     
 `
