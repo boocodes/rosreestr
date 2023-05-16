@@ -11,9 +11,9 @@ import {
 import {getBooleanFromTextBoolean} from "../../../utils/usefullMethods";
 import {useEffect, useState} from "react";
 import {getLastElemOfPath} from "../../../utils/paramsMethods";
-import ContainSettingsTab from "./containTabs/settingsTab";
-import ContainIssuesTab from "./containTabs/issuesTab";
-import ContainPullRequestsTab from "./containTabs/pullRequestsTab";
+import ContainSettingsTab from "./containTabs/settingsTab/settingsTab";
+import ContainIssuesTab from "./containTabs/issuesTab/issuesTab";
+import ContainPullRequestsTab from "./pullRequestsTab/pullRequestsTab";
 import ContainCodeTab from "./containTabs/codeTab/codeTab";
 import Header from "../../../ui/header/header";
 import Footer from "../../../ui/footer/footer";
