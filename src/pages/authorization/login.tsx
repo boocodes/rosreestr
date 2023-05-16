@@ -48,7 +48,7 @@ function LoginPage(props:Props) {
             password: regForm.current?.children[1].children[1].value,
         }
         console.log(object);
-        loginUserMethod("POST", object, "https://rosreestr/vendor/api/user/login.php", navigate, dispatch, changeUserAuthFlag, changeUserData, changeWrongPasswordOrLoginFlag);
+        loginUserMethod("POST", object, "https://rosreestr/api/user/login.php", navigate, dispatch, changeUserAuthFlag, changeUserData, changeWrongPasswordOrLoginFlag);
     }
 
         const modalWindowsFlag = useAppSelector(selectModalWindowsFlags);

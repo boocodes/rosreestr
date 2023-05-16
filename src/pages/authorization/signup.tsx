@@ -39,7 +39,7 @@ function RegistrationPage(props:Props){
 
         }
 
-        registrateUserMethod("POST", object, dispatch, changeUserAlreadyExistFlag, "https://rosreestr/vendor/api/user/registration.php", navigate);
+        registrateUserMethod("POST", object, dispatch, changeUserAlreadyExistFlag, "https://rosreestr/api/user/registration.php", navigate);
     }
 
 

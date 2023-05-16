@@ -48,7 +48,7 @@ function ContainerDisplayPage(props:Props){
            contain_title: getLastElemOfPath(location.pathname),
            master_user_id: userData.user_id,
        }
-       getContainByUsernameAndContainName("POST", objectData, "https://rosreestr/vendor/api/container/get_contain_by_login.php", dispatch, changeContainerViewPage, changeContainClosedFlag, changeContainNotFoundFlag);
+       getContainByUsernameAndContainName("POST", objectData, "https://rosreestr/api/container/get_contain_by_login.php", dispatch, changeContainerViewPage, changeContainClosedFlag, changeContainNotFoundFlag);
     }, [])
     return (
             <>

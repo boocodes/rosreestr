@@ -7,7 +7,7 @@ import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {getSelfContains} from "../../utils/fetchMethod";
 import {addContain} from "../../redux/reducers/contain/reducer";
 import {isArrayEmpty} from "../../utils/usefullMethods";
-
+import {Link, useNavigate} from "react-router-dom";
 
 interface Props{
 
@@ -38,7 +38,7 @@ function AdditionalSearchMenu(){
         }
         getSelfContains("POST", objectData, "https://rosreestr/vendor/api/container/get_self_contains.php", dispatch, addContain);
     }, [])
-
+    const navigate = useNavigate();
     return(
         <AdditionalMenu>
                 {
@@ -46,7 +46,9 @@ function AdditionalSearchMenu(){
                     containList.map((elem:IContainsList)=>{
                         return (
                             <AdditionalMenuItemList key={elem.title}>
-                                <AdditionalMenuItemElem>{userData.login}/{elem.title}</AdditionalMenuItemElem>
+                                <AdditionalMenuItemElem onClick={()=>{
+                                    navigate("/container/" + userData.login + "/" + elem.title);
+                                }}>{userData.login}/{elem.title}</AdditionalMenuItemElem>
                             </AdditionalMenuItemList>
                         )
                     })
@@ -122,9 +124,12 @@ const AdditionalMenuItemList = styled.div`
 `
 const AdditionalMenuItemElem = styled.p`
     padding: 15px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
     border-top: 1px solid #d0d7de;
-   
 `
+
 
 
 export default HeaderSearchInput;

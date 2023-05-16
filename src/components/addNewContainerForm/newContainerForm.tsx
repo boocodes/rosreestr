@@ -55,7 +55,7 @@ function NewContainerForm(props:Props){
                 contain_author_login: userData.login,
             }
 
-            createContainMethod("POST",objectData, "https://rosreestr/vendor/api/container/create_contain.php", navigate);
+            createContainMethod("POST",objectData, "https://rosreestr/api/container/create_contain.php", navigate);
         }
         else{
             return
