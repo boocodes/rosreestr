@@ -7,6 +7,7 @@ import CodeDisplayingWrapper from "./codeDisplayingWrapper";
 import AddNewFilesModal from "./addNewFilesModal";
 import CreateNewFileModal from "./createNewFileModal";
 import CloseIcon from "../../../../../images/closeIcon.jpg";
+import SwitchBranchWrapper from "./switchBranch/switchBranchWrapper";
 
 interface Props{
 
@@ -85,7 +86,7 @@ function AddNewElemMenu(props:IAddNewElemMenu){
 
 
 function ContainCodeTab(props:Props){
-
+    const [switchBranchFlag, setSwitchBranchFlag] = useState(false);
     const [createNewFileModalFlag, setCreateNewFileModalFlag] = useState(false);
     const [addNewFilesModalFlag, setAddNewFilesModalFlag] = useState(false);
     const [uploadedFiles, setUploadedFiles] = useState<IUploadedFiles[]>([]);
@@ -121,17 +122,17 @@ function ContainCodeTab(props:Props){
     }
 
     const containViewPage = useAppSelector(selectContainViewPage);
-
+    console.log(containViewPage);
     // @ts-ignore
     return(
         <>
             {createNewFileModalFlag ?
-                <CreateNewFileModal repositoryName={"main"} branchName={"init"} changeModalFlag={setCreateNewFileModalFlag}/>
+                <CreateNewFileModal repositoryName={containViewPage.title} branchName={containViewPage.default_branch} changeModalFlag={setCreateNewFileModalFlag}/>
                 :
                 null
             }
             {addNewFilesModalFlag ?
-                <AddNewFilesModal repositoryName={"main"} changeModalFlag={setAddNewFilesModalFlag}/>
+                <AddNewFilesModal repositoryName={containViewPage.default_branch} changeModalFlag={setAddNewFilesModalFlag}/>
                 :
                 null
             }
@@ -140,11 +141,16 @@ function ContainCodeTab(props:Props){
                     <CodeWindowHeaderWrapper>
                         <CodeWindowHeaderDisplayingDataWrapper>
                             <CurrentBranchWrapper>
-                                <CurrentBranchTitle>stage-design</CurrentBranchTitle>
+                                <CurrentBranchTitle onClick={()=>setSwitchBranchFlag(!switchBranchFlag)}>{containViewPage.default_branch}</CurrentBranchTitle>
                             </CurrentBranchWrapper>
+                            {switchBranchFlag ?
+                                <SwitchBranchWrapper turnSwitchBranchFlag={setSwitchBranchFlag}/>
+                                :
+                                null
+                            }
                             <BranchCountsWrapper>
-                                <BranchCountsTitleBoldSpan>25</BranchCountsTitleBoldSpan>
-                                <BranchCountsTitle>branches</BranchCountsTitle>
+                                <BranchCountsTitleBoldSpan>{containViewPage.branches_count + 1}</BranchCountsTitleBoldSpan>
+                                <BranchCountsTitle>Веток</BranchCountsTitle>
                             </BranchCountsWrapper>
                         </CodeWindowHeaderDisplayingDataWrapper>
 
@@ -227,6 +233,7 @@ const CodeWindowHeaderWrapper = styled.div`
 
 const CodeWindowHeaderDisplayingDataWrapper = styled.div`
     display: flex;
+    padding: 5px 0px 0px 5px;
     align-items: center;
 `
 
@@ -243,6 +250,10 @@ const CurrentBranchWrapper = styled.div`
     background-color: #f6f8fa;
     border-radius: 5px;
     margin-right: 15px;
+    cursor: pointer;
+    :hover{
+        opacity: 0.5;
+    }
 `
 const AddNewElemButton = styled.button`
     border: none;
@@ -313,7 +324,7 @@ const BranchCountsWrapper = styled.div`
 const BranchCountsTitle = styled.p`
     font-size: 17px;
     font-weight: 400;
-    padding-top: 2px;
+    
 `
 
 const BranchCountsTitleBoldSpan = styled.span`

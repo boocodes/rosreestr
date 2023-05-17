@@ -12,6 +12,11 @@ interface IContainElem{
     contain_id: string;
     description: string;
     contain_author_login: string;
+    branches_count: number;
+    main_language: string;
+    default_branch: string;
+    branches_list: string[];
+    contain_size: number;
 }
 
 interface IAddContain{
