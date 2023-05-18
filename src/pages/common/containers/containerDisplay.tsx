@@ -57,7 +57,7 @@ function ContainerDisplayPage(props:Props){
                         <>
                             <Header/>
                             <ContainerTitle>
-                                Ничего не найден
+                                Ничего не найдено
                             </ContainerTitle>
                             <Footer/>
                         </>
