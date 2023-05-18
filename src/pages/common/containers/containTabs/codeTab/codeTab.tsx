@@ -176,10 +176,10 @@ function ContainCodeTab(props:Props){
                 </CodeWindowWrapper>
                 <AboutWrapper>
                     <AboutTitleWrapper>
-                        <AboutTitleText>About</AboutTitleText>
+                        <AboutTitleText>О контейнере</AboutTitleText>
                     </AboutTitleWrapper>
                     <AboutDescriptionWrapper>
-                        <AboutDescriptionTitle>{containViewPage.description}</AboutDescriptionTitle>
+                        <AboutDescriptionTitle>{containViewPage.description || "Информации нет"}</AboutDescriptionTitle>
                     </AboutDescriptionWrapper>
                 </AboutWrapper>
             </MainContent>

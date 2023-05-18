@@ -67,6 +67,13 @@ interface IPromiseUpdateUserFields{
     location: string;
 }
 
+interface IPromiseRenameContain{
+    login: string;
+    password: string;
+    contain_title: string;
+    new_contain_title: string;
+}
+
 interface ILoginResponseSuccess {
     message: string
 }
@@ -293,6 +300,33 @@ export async function updateUserFields(
             if(response){
                 dispatch(changeUserData(response.message));
                 return true;
+            }
+            else{
+                return false;
+            }
+        })
+}
+
+
+export async function renameContain(
+    method: "POST",
+    body: IPromiseRenameContain,
+    url: string,
+    dispatch: ThunkDispatch<any, undefined, AnyAction> & Dispatch<AnyAction>,
+    changeContainerViewPage: any,
+){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            if(data.ok){
+                return data.json();
+            }
+            else{
+                return false;
+            }
+        })
+        .then((response)=>{
+            if(response){
+                dispatch(changeContainerViewPage({containViewPage: {title: body.new_contain_title, contain_author_login: body.login}}));
             }
             else{
                 return false;

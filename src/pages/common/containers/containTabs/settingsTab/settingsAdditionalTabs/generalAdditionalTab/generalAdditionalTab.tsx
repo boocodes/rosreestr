@@ -1,5 +1,22 @@
 import styled from "styled-components";
 import SwitchDefaultBranch from "../../../../../../../images/switchDefaultBranch.png";
+import {useRef} from "react";
+import {useAppSelector} from "../../../../../../../hooks/useAppSelector";
+import {selectContainViewPage} from "../../../../../../../redux/reducers/contain/selector";
+import {useAppDispatch} from "../../../../../../../hooks/useAppDispatch";
+import {
+    getContainByUsernameAndContainName,
+    getViewPageByLogin,
+    renameContain
+} from "../../../../../../../utils/fetchMethod";
+import {selectUserData} from "../../../../../../../redux/reducers/user/selector";
+import {
+    changeContainClosedFlag,
+    changeContainerViewPage,
+    changeContainNotFoundFlag
+} from "../../../../../../../redux/reducers/contain/reducer";
+import {changeViewPageUserData} from "../../../../../../../redux/reducers/user/reducer";
+import {getLastElemOfPath, getPreLastElemOfPath} from "../../../../../../../utils/paramsMethods";
 
 
 interface Props{
@@ -9,16 +26,31 @@ interface Props{
 
 function GeneralAdditionalTab(props:Props){
 
+    const dispatch = useAppDispatch();
+    const userData = useAppSelector(selectUserData);
+    const renameContainFormRef = useRef<HTMLFormElement>(null);
+    const containViewPage = useAppSelector(selectContainViewPage);
+    function renameContainSubmit(event: any){
+        event.preventDefault();
+        console.log(renameContainFormRef);
+        //@ts-ignore
+        if(!renameContainFormRef.current[0].value.trim()) return;
+        //@ts-ignore
+        console.log(renameContainFormRef.current[0].value);
+        //@ts-ignore
+        renameContain("POST", {login: userData.login, password: userData.password, new_contain_title: renameContainFormRef.current[0].value, contain_title: containViewPage.title}, "https://rosreestr/api/container/rename_contain.php", dispatch, changeContainerViewPage);
+    }
+
 
     return(
         <>
             <ExternalWrapper>
                 <RepositoryTitleSection>
                     <Title>Основные</Title>
-                    <ChangeRepositoryForm>
+                    <ChangeRepositoryForm ref={renameContainFormRef} onSubmit={renameContainSubmit}>
                         <ChangeRepositoryInputWrapper>
                             <ChangeRepositoryInputLabel>Имя контейнера</ChangeRepositoryInputLabel>
-                            <ChangeRepositoryInput placeholder={"Здесь будет имя Вашего контейнера"}/>
+                            <ChangeRepositoryInput defaultValue={containViewPage.title}/>
                         </ChangeRepositoryInputWrapper>
                         <ChangeRepositorySubmitButton value={"Переименовать"} type={"submit"}/>
                     </ChangeRepositoryForm>

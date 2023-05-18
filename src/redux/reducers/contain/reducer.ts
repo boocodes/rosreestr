@@ -3,20 +3,20 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 
 interface IContainElem{
-    title: string;
-    contain_link: string;
-    private: string;
-    user_id: string;
-    edited: string;
-    created: string;
-    contain_id: string;
-    description: string;
-    contain_author_login: string;
-    branches_count: number;
-    main_language: string;
-    default_branch: string;
-    branches_list: string[];
-    contain_size: number;
+    title?: string;
+    contain_link?: string;
+    private?: string;
+    user_id?: string;
+    edited?: string;
+    created?: string;
+    contain_id?: string;
+    description?: string;
+    contain_author_login?: string;
+    branches_count?: number;
+    main_language?: string;
+    default_branch?: string;
+    branches_list?: string[];
+    contain_size?: number;
 }
 
 interface IAddContain{
@@ -25,6 +25,7 @@ interface IAddContain{
 interface IChangeContainerViewPage{
     containViewPage: IContainElem;
 }
+
 
 
 interface IContainViewPage{
