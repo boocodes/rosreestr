@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import React, {useRef} from "react";
 
 
 interface Props{
@@ -10,10 +11,20 @@ interface Props{
 
 
 function CreateNewFileModal(props:Props){
+
+
+    const formRef = useRef<HTMLFormElement>(null);
+    function onFormCreateFileSubmit(event:React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
+        console.log(formRef);
+
+    }
+
+
     const navigate = useNavigate();
     return(
         <>
-            <ExternalWrapper>
+            <ExternalWrapperForm onSubmit={onFormCreateFileSubmit} ref={formRef}>
                 <HeaderWrapper>
                     <FileNameWrapper>
                         <RepositoryName>{props.repositoryName}</RepositoryName>
@@ -31,9 +42,15 @@ function CreateNewFileModal(props:Props){
                     </CancelChangesWrapper>
                 </HeaderWrapper>
                 <CodeSectionWrapper>
-
+                  <CodeTextArea defaultValue={"Введите код здесь"}/>
                 </CodeSectionWrapper>
-            </ExternalWrapper>
+
+                <CommentInputWrapper>
+                    <CommentInputLabel>Текст комментария</CommentInputLabel>
+                    <CommentInput defaultValue={"Ваш текст"}/>
+                </CommentInputWrapper>
+                <SubmitFormButton value={"Создать файл"} type={"submit"}/>
+            </ExternalWrapperForm>
             <Overlay onClick={()=>props.changeModalFlag(false)}/>
         </>
     )
@@ -47,17 +64,17 @@ const Overlay = styled.div`
     height: 100vh;
 `
 
-const ExternalWrapper = styled.div`
+const ExternalWrapperForm = styled.form`
     position: absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
+    top: 10%;
+    left: 50%;
+    transform:translate(-50%, -4%);
     width: 90vw;
-    height: 90vh;
     background-color: #ffffff;
     border: 1px solid #d0d7de;
     z-index: 6;
-    padding: 30px;
+    padding: 30px 30px 100px 30px;
+    
 `
 
 const HeaderWrapper = styled.div`
@@ -117,8 +134,51 @@ const CodeSectionWrapper = styled.div`
     margin-top: 50px;
     height: 75vh;
     border: 1px solid #d0d7de;
+    position: relative;
 `
 
+const CodeTextArea = styled.textarea`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;   
+    resize: none;
+    padding: 15px;
+`
+
+const CommentInputWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+`
+const CommentInputLabel = styled.label`
+    font-size: 18px;
+    margin-bottom: 20px;
+`
+const CommentInput = styled.input`
+    width: 400px;
+    padding: 5px 0px 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #d0d7de;
+    outline: none;
+`
+
+
+
+const SubmitFormButton = styled.input`
+    margin-top: 40px;
+    font-size: 18px;
+    font-family: 'Gilroy';
+    padding: 10px 15px;
+    background: none;
+    border: 1px solid #d0d7de;
+    cursor: pointer;
+    border-radius: 5px;
+    :hover{
+        opacity: 0.5;
+    }
+`
 
 
 
