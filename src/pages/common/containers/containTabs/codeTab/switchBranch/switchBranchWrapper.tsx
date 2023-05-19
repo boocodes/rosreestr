@@ -4,33 +4,70 @@ import {useAppSelector} from "../../../../../../hooks/useAppSelector";
 import {selectUserData, selectViewPageUserData} from "../../../../../../redux/reducers/user/selector";
 import {selectContainViewPage} from "../../../../../../redux/reducers/contain/selector";
 
+
+interface IBranchesList {
+    contain_id: string;
+    branch_link: string;
+    id: string;
+    branch_title: string;
+    commits_links: string;
+    branch_size: string;
+    main_language: string;
+}
+
 interface Props{
     turnSwitchBranchFlag: (flag:boolean) => void;
+    branchesList: IBranchesList[] | undefined;
 }
 
 
 function SwitchBranchWrapper(props:Props){
 
-    const [branchesList, setBranchesList] = useState([]);
+
+
+    interface IBranchesList {
+        contain_id: string;
+        branch_link: string;
+        id: string;
+        branch_title: string;
+        commits_links: string;
+        branch_size: string;
+        main_language: string;
+    }
+
+    const [branchesList, setBranchesList] = useState<IBranchesList[]>();
     const containViewPageData = useAppSelector(selectContainViewPage);
     useEffect(()=>{
-        fetch("https://rosreestr/api/container/get_branches_list.php", {
+        fetch("https://rosreestr/api/branch/get_branches_by_contain_id.php", {
             method: 'POST',
             body: JSON.stringify({
-                "login": 'f',
+                "contain_id": containViewPageData.contain_id,
             })
         })
+            .then((response)=>{
+                return response.json();
+            })
+            .then((data)=>{
+                setBranchesList(data.message);
+            })
     }, [])
-    console.log(containViewPageData);
+
+
+
     return(
         <>
 
             <ExternalWrapper>
                 <BranchElemsListWrapper>
-                    {JSON.parse(containViewPageData.branches_list).map((elem:string)=>{
-                        return  <BranchElemWrapper>
-                                    <BranchElemText>{elem}</BranchElemText>
-                                </BranchElemWrapper>
+                    {/*{JSON.parse(containViewPageData.branches_list).map((elem:string)=>{*/}
+                    {/*    return  <BranchElemWrapper>*/}
+                    {/*                <BranchElemText>{elem}</BranchElemText>*/}
+                    {/*            </BranchElemWrapper>*/}
+                    {/*})}*/}
+                    {props.branchesList?.map((elem: IBranchesList)=>{
+                        return <BranchElemWrapper>
+                                    <BranchElemText>{elem.branch_title}</BranchElemText>
+                               </BranchElemWrapper>
                     })}
                 </BranchElemsListWrapper>
             </ExternalWrapper>

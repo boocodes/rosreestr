@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CodeWindowImg from '../../../../../images/codeContain.png';
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
 import {selectContainViewPage} from "../../../../../redux/reducers/contain/selector";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import CodeDisplayingWrapper from "./codeDisplayingWrapper";
 import AddNewFilesModal from "./addNewFilesModal";
 import CreateNewFileModal from "./createNewFileModal";
@@ -86,6 +86,8 @@ function AddNewElemMenu(props:IAddNewElemMenu){
 
 
 function ContainCodeTab(props:Props){
+
+    const containViewPage = useAppSelector(selectContainViewPage);
     const [switchBranchFlag, setSwitchBranchFlag] = useState(false);
     const [createNewFileModalFlag, setCreateNewFileModalFlag] = useState(false);
     const [addNewFilesModalFlag, setAddNewFilesModalFlag] = useState(false);
@@ -121,7 +123,35 @@ function ContainCodeTab(props:Props){
         console.log(formData);
     }
 
-    const containViewPage = useAppSelector(selectContainViewPage);
+
+    interface IBranchesList {
+        contain_id: string;
+        branch_link: string;
+        id: string;
+        branch_title: string;
+        commits_links: string;
+        branch_size: string;
+        main_language: string;
+    }
+
+    const [branchesList, setBranchesList] = useState<IBranchesList[]>();
+
+    useEffect(()=>{
+        fetch("https://rosreestr/api/branch/get_branches_by_contain_id.php", {
+            method: 'POST',
+            body: JSON.stringify({
+                "contain_id": containViewPage.contain_id,
+            })
+        })
+            .then((response)=>{
+                return response.json();
+            })
+            .then((data)=>{
+                setBranchesList(data.message);
+            })
+    }, [])
+
+
     console.log(containViewPage);
     // @ts-ignore
     return(
@@ -144,12 +174,12 @@ function ContainCodeTab(props:Props){
                                 <CurrentBranchTitle onClick={()=>setSwitchBranchFlag(!switchBranchFlag)}>{containViewPage.default_branch}</CurrentBranchTitle>
                             </CurrentBranchWrapper>
                             {switchBranchFlag ?
-                                <SwitchBranchWrapper turnSwitchBranchFlag={setSwitchBranchFlag}/>
+                                <SwitchBranchWrapper branchesList={branchesList} turnSwitchBranchFlag={setSwitchBranchFlag}/>
                                 :
                                 null
                             }
                             <BranchCountsWrapper>
-                                <BranchCountsTitleBoldSpan>{containViewPage.branches_count + 1}</BranchCountsTitleBoldSpan>
+                                <BranchCountsTitleBoldSpan>{branchesList?.length}</BranchCountsTitleBoldSpan>
                                 <BranchCountsTitle>Веток</BranchCountsTitle>
                             </BranchCountsWrapper>
                         </CodeWindowHeaderDisplayingDataWrapper>
