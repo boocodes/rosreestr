@@ -74,6 +74,13 @@ interface IPromiseRenameContain{
     new_contain_title: string;
 }
 
+interface IPromiseCreateNewBranch{
+    new_branch_title: string;
+    contain_id: string;
+    login: string;
+    password: string;
+}
+
 interface ILoginResponseSuccess {
     message: string
 }
@@ -331,5 +338,26 @@ export async function renameContain(
             else{
                 return false;
             }
+        })
+}
+
+
+export async function createNewBranch(
+    method: "POST",
+    body: IPromiseCreateNewBranch,
+    url: string,
+
+){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            if(data.ok){
+                return data.json();
+            }
+            else{
+                return false;
+            }
+        })
+        .then((response)=>{
+            return response;
         })
 }

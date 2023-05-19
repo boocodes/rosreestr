@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useAppSelector} from "../../../../../../hooks/useAppSelector";
 import {selectUserData, selectViewPageUserData} from "../../../../../../redux/reducers/user/selector";
 import {selectContainViewPage} from "../../../../../../redux/reducers/contain/selector";
+import CreateNewBranchModal from "../modals/createNewBranchModal";
 
 
 interface IBranchesList {
@@ -37,6 +38,8 @@ function SwitchBranchWrapper(props:Props){
 
     const [branchesList, setBranchesList] = useState<IBranchesList[]>();
     const containViewPageData = useAppSelector(selectContainViewPage);
+    const [createNewBranchModalFlag, setCreateNewBranchModalFlag] = useState(false);
+
     useEffect(()=>{
         fetch("https://rosreestr/api/branch/get_branches_by_contain_id.php", {
             method: 'POST',
@@ -56,19 +59,20 @@ function SwitchBranchWrapper(props:Props){
 
     return(
         <>
-
+            {
+                createNewBranchModalFlag ?
+                    <CreateNewBranchModal changeCreateNewBranchModalFlag={setCreateNewBranchModalFlag}/>
+                    :
+                    null
+            }
             <ExternalWrapper>
                 <BranchElemsListWrapper>
-                    {/*{JSON.parse(containViewPageData.branches_list).map((elem:string)=>{*/}
-                    {/*    return  <BranchElemWrapper>*/}
-                    {/*                <BranchElemText>{elem}</BranchElemText>*/}
-                    {/*            </BranchElemWrapper>*/}
-                    {/*})}*/}
                     {props.branchesList?.map((elem: IBranchesList)=>{
                         return <BranchElemWrapper>
                                     <BranchElemText>{elem.branch_title}</BranchElemText>
                                </BranchElemWrapper>
                     })}
+                    <AddBranch onClick={()=>setCreateNewBranchModalFlag(!createNewBranchModalFlag)}>Создать</AddBranch>
                 </BranchElemsListWrapper>
             </ExternalWrapper>
 
@@ -108,6 +112,19 @@ const BranchElemWrapper = styled.div`
 `
 const BranchElemText = styled.p`
 
+`
+const AddBranch = styled.p`
+    background-color: #1f883d;  
+    color: white;
+    padding-left: 30px;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    cursor: pointer;
+    :hover{
+        opacity: 0.5;
+        transition: 0.5s;
+    }
+    
 `
 
 

@@ -8,6 +8,7 @@ import AddNewFilesModal from "./addNewFilesModal";
 import CreateNewFileModal from "./createNewFileModal";
 import CloseIcon from "../../../../../images/closeIcon.jpg";
 import SwitchBranchWrapper from "./switchBranch/switchBranchWrapper";
+import CreateNewBranchModal from "./modals/createNewBranchModal";
 
 interface Props{
 
@@ -93,6 +94,7 @@ function ContainCodeTab(props:Props){
     const [addNewFilesModalFlag, setAddNewFilesModalFlag] = useState(false);
     const [uploadedFiles, setUploadedFiles] = useState<IUploadedFiles[]>([]);
     const [addNewFileMenuFlag, setAddNewFileMenuFlag] = useState(false);
+
     const [selectedFile, setSelectedFile] = useState("");
     const refForm = useRef<HTMLFormElement>(null);
     const refInput = useRef<HTMLInputElement>(null);
@@ -170,8 +172,8 @@ function ContainCodeTab(props:Props){
                 <CodeWindowWrapper>
                     <CodeWindowHeaderWrapper>
                         <CodeWindowHeaderDisplayingDataWrapper>
-                            <CurrentBranchWrapper>
-                                <CurrentBranchTitle onClick={()=>setSwitchBranchFlag(!switchBranchFlag)}>{containViewPage.default_branch}</CurrentBranchTitle>
+                            <CurrentBranchWrapper onClick={()=>setSwitchBranchFlag(!switchBranchFlag)} >
+                                <CurrentBranchTitle>{containViewPage.default_branch}</CurrentBranchTitle>
                             </CurrentBranchWrapper>
                             {switchBranchFlag ?
                                 <SwitchBranchWrapper branchesList={branchesList} turnSwitchBranchFlag={setSwitchBranchFlag}/>
