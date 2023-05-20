@@ -9,6 +9,7 @@ import CreateNewFileModal from "./createNewFileModal";
 import CloseIcon from "../../../../../images/closeIcon.jpg";
 import SwitchBranchWrapper from "./switchBranch/switchBranchWrapper";
 import CreateNewBranchModal from "./modals/createNewBranchModal";
+import DisplayingCommitsList from "./displayingCommitsList";
 
 interface Props{
 
@@ -206,7 +207,8 @@ function ContainCodeTab(props:Props){
                         <input  webkitdirectory="true" mozdirectory="true" multiple ref={refInput} onChange={sendContain} type={"file"}/>
                     </form>
                     <ShowUploadedFiles date={uploadedFiles}/>
-                    <CodeDisplayingWrapper actionAuthor={containViewPage.contain_author_login} userAvatarImgSrc={"https://rosreestr/images/myImg.jpg"} commitsCount={"1"} lastAction={"initial commit"}/>
+                    {/*<CodeDisplayingWrapper actionAuthor={containViewPage.contain_author_login} userAvatarImgSrc={"https://rosreestr/images/myImg.jpg"} commitsCount={"1"} lastAction={"initial commit"}/>*/}
+                    <DisplayingCommitsList/>
                 </CodeWindowWrapper>
                 <AboutWrapper>
                     <AboutTitleWrapper>
