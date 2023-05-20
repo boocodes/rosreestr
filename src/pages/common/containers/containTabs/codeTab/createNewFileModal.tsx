@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import React, {useRef} from "react";
+import {createNewFile} from "../../../../../utils/fetchMethod";
+import {useAppSelector} from "../../../../../hooks/useAppSelector";
+import {selectContainViewPage} from "../../../../../redux/reducers/contain/selector";
+import {selectUserData} from "../../../../../redux/reducers/user/selector";
 
 
 interface Props{
@@ -11,13 +15,30 @@ interface Props{
 
 
 function CreateNewFileModal(props:Props){
-
-
+    const userData = useAppSelector(selectUserData);
+    const containViewPage = useAppSelector(selectContainViewPage);
     const formRef = useRef<HTMLFormElement>(null);
     function onFormCreateFileSubmit(event:React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        console.log(formRef);
 
+        const data = {
+            //@ts-ignore
+            file_name: formRef.current[0].value,
+            //@ts-ignore
+            file_value: formRef.current[2].value,
+            //@ts-ignore
+            commit_text: formRef.current[3].value,
+            branch_title: containViewPage.default_branch,
+            contain_id: containViewPage.contain_id,
+            login: userData.login,
+            password: userData.password,
+            contain_title: containViewPage.title,
+
+        }
+
+        console.log(data);
+
+        createNewFile("POST", data, "https://rosreestr/api/container/create_new_file.php");
     }
 
 
@@ -29,9 +50,7 @@ function CreateNewFileModal(props:Props){
                     <FileNameWrapper>
                         <RepositoryName>{props.repositoryName}</RepositoryName>
                         <AfterRepositorySlash>/</AfterRepositorySlash>
-                        <FileInputForm>
                             <FileNameInput placeholder={"Название файла"} defaultValue={""}/>
-                        </FileInputForm>
                         <InText>in</InText>
                         <BranchName>{props.branchName}</BranchName>
                     </FileNameWrapper>

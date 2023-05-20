@@ -8,6 +8,7 @@ import {selectUserData} from "../../../../../../redux/reducers/user/selector";
 
 interface Props{
     changeCreateNewBranchModalFlag: (flag: boolean) => void;
+    turnSwitchBranchFlag: (flag:boolean) => void;
 }
 
 
@@ -25,17 +26,12 @@ function CreateNewBranchModal(props:Props) {
             contain_id: containViewPage.contain_id,
             login: userData.login,
             password: userData.password,
+            contain_title: containViewPage.title,
 
         };
-        createNewBranch("POST", data, "https://rosreestr/api/branch/add_new_branch.php")
-            .then((response:any)=>{
-                if(response.ok){
-                    props.changeCreateNewBranchModalFlag(false);
-                }
-                else{
-                    return;
-                }
-            })
+        createNewBranch("POST", data, "https://rosreestr/api/branch/add_new_branch.php");
+        props.changeCreateNewBranchModalFlag(false);
+        props.turnSwitchBranchFlag(false);
 
 
     }

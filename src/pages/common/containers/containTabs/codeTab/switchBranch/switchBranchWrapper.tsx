@@ -61,7 +61,7 @@ function SwitchBranchWrapper(props:Props){
         <>
             {
                 createNewBranchModalFlag ?
-                    <CreateNewBranchModal changeCreateNewBranchModalFlag={setCreateNewBranchModalFlag}/>
+                    <CreateNewBranchModal turnSwitchBranchFlag={props.turnSwitchBranchFlag} changeCreateNewBranchModalFlag={setCreateNewBranchModalFlag}/>
                     :
                     null
             }
