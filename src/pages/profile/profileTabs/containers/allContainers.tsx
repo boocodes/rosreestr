@@ -27,7 +27,7 @@ function AllContainersProfileTab(props:Props){
             user_id: userData.user_id,
             user_password: userData.password,
         }
-        getSelfContains("POST", objectData, "https://rosreestr/vendor/api/container/get_self_contains.php", dispatch, addContain);
+        getSelfContains("POST", objectData, "https://rosreestr/api/container/get_self_contains.php", dispatch, addContain);
     }, [])
 
 
