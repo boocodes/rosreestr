@@ -57,6 +57,22 @@ function SwitchBranchWrapper(props:Props){
 
 
 
+
+    function changeContainDefaultBranch(branch_title: string){
+        fetch("https://rosreestr/api/container/change_default_branch.php", {
+            method: "POST",
+            body: JSON.stringify({
+                contain_id: containViewPageData.contain_id,
+                contain_title: containViewPageData.title,
+                old_default_branch: containViewPageData.default_branch,
+                new_default_branch: branch_title,
+            })
+        })
+        props.turnSwitchBranchFlag(false);
+    }
+
+
+
     return(
         <>
             {
@@ -68,7 +84,7 @@ function SwitchBranchWrapper(props:Props){
             <ExternalWrapper>
                 <BranchElemsListWrapper>
                     {props.branchesList?.map((elem: IBranchesList)=>{
-                        return <BranchElemWrapper>
+                        return <BranchElemWrapper onClick={()=>changeContainDefaultBranch(elem.branch_title)}>
                                     <BranchElemText>{elem.branch_title}</BranchElemText>
                                </BranchElemWrapper>
                     })}

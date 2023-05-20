@@ -15,6 +15,7 @@ function CodeDisplayingWrapper(props:Props){
         <ExternalWrapper>
             <HeaderWrapper>
                 <HeaderAuthorDataWrapper>
+                    fsdfs
                     <UserAvatarImg src={props.userAvatarImgSrc}/>
                     <LatestActionAuthor>{props.actionAuthor}</LatestActionAuthor>
                     <LatestAction>{props.lastAction}</LatestAction>
