@@ -79,6 +79,18 @@ interface IPromiseCreateNewBranch{
     contain_id: string;
     login: string;
     password: string;
+    contain_title: string;
+}
+
+interface IPromiseCreateNewFile{
+    file_name: string;
+    file_value: string;
+    commit_text: string;
+    branch_title: string;
+    contain_id: string;
+    login: string;
+    password: string;
+    contain_title: string;
 }
 
 interface ILoginResponseSuccess {
@@ -347,6 +359,26 @@ export async function createNewBranch(
     body: IPromiseCreateNewBranch,
     url: string,
 
+){
+    await fetchMethod(method, body, url)
+        .then((data)=>{
+            if(data.ok){
+                return data.json();
+            }
+            else{
+                return false;
+            }
+        })
+        .then((response)=>{
+            return response;
+        })
+}
+
+
+export async function createNewFile(
+    method: "POST",
+    body: IPromiseCreateNewFile,
+    url: string,
 ){
     await fetchMethod(method, body, url)
         .then((data)=>{
