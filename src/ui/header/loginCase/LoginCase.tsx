@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectUserData} from "../../redux/reducers/user/selector";
-import PopupUserCabinetLinkMenu from "./popupMenu";
 import {useState} from "react";
+import {
+    useAppSelector,
+    selectUserData,
+    PopupUserCabinetLinkMenu,
+}   from '../../../';
+
 
 interface Props{
 

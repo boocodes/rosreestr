@@ -1,16 +1,20 @@
 import styled from "styled-components";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectUserData, selectViewPageUserData} from "../../redux/reducers/user/selector";
-import Header from "../../ui/header/header";
-import Footer from "../../ui/footer/footer";
 import noAvatarIcon from "../../images/no-image-avatar.svg";
 import {Link, useLocation, useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
-import {getViewPageByLogin} from "../../utils/fetchMethod";
-import {getLastElemOfPath} from "../../utils/paramsMethods";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {changeViewPageUserData} from "../../redux/reducers/user/reducer";
-import internal from "stream";
+import {
+    useAppDispatch,
+    useAppSelector,
+    Header,
+    Footer,
+    getViewPageByLogin,
+    getLastElemOfPath,
+    changeViewPageUserData,
+    selectViewPageUserData,
+    selectUserData,
+}   from '../../';
+
+
 
 
 interface Props{

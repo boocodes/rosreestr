@@ -1,26 +1,27 @@
 import styled from "styled-components";
-import Header from "../../../ui/header/header";
-import Footer from "../../../ui/footer/footer";
-import {getContainByUsernameAndContainName} from "../../../utils/fetchMethod";
-import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
+
+
+
 import {
+    Header,
+    Footer,
+    getContainByUsernameAndContainName,
+    useAppDispatch,
+    changeContainNotFoundFlag,
     changeContainClosedFlag,
     changeContainerViewPage,
-    changeContainNotFoundFlag
-} from "../../../redux/reducers/contain/reducer";
-import {useEffect} from "react";
-import {getLastElemOfPath, getPreLastElemOfPath} from "../../../utils/paramsMethods";
-import {useLocation} from "react-router-dom";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import {
-    selectContainClosedFlag,
+    getLastElemOfPath,
+    getPreLastElemOfPath,
+    useAppSelector,
+    selectContainViewPage,
     selectContainNotFoundFlag,
-    selectContainViewPage
-} from "../../../redux/reducers/contain/selector";
-import {isObjectEmpty} from "../../../utils/usefullMethods";
-import {selectUserData} from "../../../redux/reducers/user/selector";
-import ContainerDisplayInner from "./containerDisplayInner";
-
+    selectContainClosedFlag,
+    isObjectEmpty,
+    selectUserData,
+    ContainerDisplayInner
+}   from '../../../';
 
 interface Props{
 
@@ -36,7 +37,7 @@ interface IContainViewPage{
 
 
 function ContainerDisplayPage(props:Props){
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const userData = useAppSelector(selectUserData);
     const containViewPage = useAppSelector(selectContainViewPage);

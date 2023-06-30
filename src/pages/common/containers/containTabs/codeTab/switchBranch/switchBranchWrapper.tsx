@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
-import {useAppSelector} from "../../../../../../hooks/useAppSelector";
-import {selectUserData, selectViewPageUserData} from "../../../../../../redux/reducers/user/selector";
-import {selectContainViewPage} from "../../../../../../redux/reducers/contain/selector";
-import CreateNewBranchModal from "../modals/createNewBranchModal";
+import {
+    useAppSelector,
+    selectUserData,
+    selectViewPageUserData,
+    selectContainViewPage,
+    CreateNewBranchModal,
+}   from '../../../../../../';
 
 
 interface IBranchesList {

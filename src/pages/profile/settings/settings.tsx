@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import Header from "../../../ui/header/header";
-import Footer from "../../../ui/footer/footer";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import {selectUserData} from "../../../redux/reducers/user/selector";
 import {Link, useLocation} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
-import CommonSettingsTab from "./settingsTabs/commonTab";
-import AdminSettingsTab from "./settingsTabs/adminTab";
-import AppearanceSettingsTab from "./settingsTabs/appearanceTab";
-import {getLastElemOfPath} from "../../../utils/paramsMethods";
+import {
+    useAppSelector,
+    selectUserData,
+    Header,
+    Footer,
+    CommonSettingsTab,
+    AdminSettingsTab,
+    AppearanceSettingsTab,
+    getLastElemOfPath,
+}   from '../../../';
 
 
 interface Props{

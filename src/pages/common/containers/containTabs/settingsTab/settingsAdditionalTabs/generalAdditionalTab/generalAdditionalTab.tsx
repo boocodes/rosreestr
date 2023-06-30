@@ -1,23 +1,21 @@
 import styled from "styled-components";
 import SwitchDefaultBranch from "../../../../../../../images/switchDefaultBranch.png";
 import {useRef} from "react";
-import {useAppSelector} from "../../../../../../../hooks/useAppSelector";
-import {selectContainViewPage} from "../../../../../../../redux/reducers/contain/selector";
-import {useAppDispatch} from "../../../../../../../hooks/useAppDispatch";
 import {
+    useAppSelector,
+    selectContainViewPage,
+    useAppDispatch,
     getContainByUsernameAndContainName,
     getViewPageByLogin,
-    renameContain
-} from "../../../../../../../utils/fetchMethod";
-import {selectUserData} from "../../../../../../../redux/reducers/user/selector";
-import {
-    changeContainClosedFlag,
+    renameContain,
+    selectUserData,
+    changeContainNotFoundFlag,
     changeContainerViewPage,
-    changeContainNotFoundFlag
-} from "../../../../../../../redux/reducers/contain/reducer";
-import {changeViewPageUserData} from "../../../../../../../redux/reducers/user/reducer";
-import {getLastElemOfPath, getPreLastElemOfPath} from "../../../../../../../utils/paramsMethods";
-
+    changeContainClosedFlag,
+    changeViewPageUserData,
+    getLastElemOfPath,
+    getPreLastElemOfPath,
+}   from '../../../../../../../';
 
 interface Props{
 

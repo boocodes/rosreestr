@@ -1,16 +1,19 @@
 import styled from "styled-components";
-import Header from "../../../ui/header/header";
-import Footer from "../../../ui/footer/footer";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import {selectContains} from "../../../redux/reducers/contain/selector";
-import {selectUserData} from "../../../redux/reducers/user/selector";
-import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useEffect} from "react";
-import {getSelfContains} from "../../../utils/fetchMethod";
-import {addContain} from "../../../redux/reducers/contain/reducer";
-import {isArrayEmpty} from "../../../utils/usefullMethods";
-import {changeUserAuthFlag} from "../../../redux/reducers/user/reducer";
+import {
+    Header,
+    Footer,
+    useAppSelector,
+    selectContains,
+    selectUserData,
+    useAppDispatch,
+    getSelfContains,
+    addContain,
+    isArrayEmpty,
+    changeUserAuthFlag,
+}   from '../../../';
+
 
 interface Props{
 

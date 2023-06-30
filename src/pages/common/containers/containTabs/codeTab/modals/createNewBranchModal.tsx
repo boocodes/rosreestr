@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import {useRef, useState} from "react";
-import {createNewBranch} from "../../../../../../utils/fetchMethod";
-import {useAppSelector} from "../../../../../../hooks/useAppSelector";
-import {selectContainViewPage} from "../../../../../../redux/reducers/contain/selector";
-import {selectUserData} from "../../../../../../redux/reducers/user/selector";
+import {
+    createNewBranch,
+    useAppSelector,
+    selectContainViewPage,
+    selectUserData
+}   from '../../../../../../';
+
 
 
 interface Props{

@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import {useRef} from "react";
 import {useState} from "react";
-import {createContainMethod} from "../../utils/fetchMethod";
 import {useNavigate} from "react-router-dom";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectUserData} from "../../redux/reducers/user/selector";
+
+
+import {
+    createContainMethod,
+    useAppSelector,
+    selectUserData
+} from '../../';
 
 
 interface Props{

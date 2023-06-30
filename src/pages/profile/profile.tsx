@@ -1,20 +1,22 @@
 import styled from "styled-components";
 import {Link, Route, Routes, useLocation, useParams} from "react-router-dom";
-import ProfileCommonPage from "./profileCommon";
-import RecentContainersProfileTab from './profileTabs/overview/recentContainers';
-import AllContainersProfileTab from "./profileTabs/containers/allContainers";
-import Header from "../../ui/header/header";
-import Footer from "../../ui/footer/footer";
 import {useEffect, useState} from "react";
-import {getLastElemOfPath} from "../../utils/paramsMethods";
-import ProjectsProfileTab from "./profileTabs/projects/projects";
-import PackagesProfileTab from "./profileTabs/packages/packages";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectViewPageUserData} from "../../redux/reducers/user/selector";
-import {getViewPageByLogin} from "../../utils/fetchMethod";
-import {changeViewPageUserData} from "../../redux/reducers/user/reducer";
-import {useDispatch} from "react-redux";
-import {isObjectEmpty} from "../../utils/usefullMethods";
+import {
+    ProfileCommonPage,
+    RecentContainersProfileTab,
+    AllContainersProfileTab,
+    Header,
+    Footer,
+    getLastElemOfPath,
+    ProjectsProfileTab,
+    PackagesProfileTab,
+    useAppSelector,
+    selectViewPageUserData,
+    getViewPageByLogin,
+    changeViewPageUserData,
+    useAppDispatch,
+    isObjectEmpty,
+}   from '../../';
 
 interface Props{
 
@@ -44,7 +46,7 @@ function DisplayingTabCase(props:IDisplayinTabCase){
 
 
 function ProfilePage(props:Props){
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const viewPageUserData = useAppSelector(selectViewPageUserData);
     const [locationPath, setLocationPath] = useState("overview");

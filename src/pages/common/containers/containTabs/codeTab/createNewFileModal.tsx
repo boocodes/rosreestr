@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import React, {useRef} from "react";
-import {createNewFile} from "../../../../../utils/fetchMethod";
-import {useAppSelector} from "../../../../../hooks/useAppSelector";
-import {selectContainViewPage} from "../../../../../redux/reducers/contain/selector";
-import {selectUserData} from "../../../../../redux/reducers/user/selector";
-
+import {
+    createNewFile,
+    useAppSelector,
+    selectContainViewPage,
+    selectUserData,
+}   from '../../../../../';
 
 interface Props{
     changeModalFlag: (flag: boolean)=>void;

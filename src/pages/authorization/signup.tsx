@@ -1,16 +1,18 @@
 import styled from "styled-components";
-import Header from "../../ui/header/header";
+import Header from "../../ui/header/header/header";
 import Footer from "../../ui/footer/footer";
 import {useRef} from "react";
-import {registrateUserMethod} from "../../utils/fetchMethod";
 import {useNavigate} from "react-router-dom";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectModalWindowsFlags} from "../../redux/reducers/modalWindows/selector";
-import WrongPasswordModal from "../../ui/modal/wrongPassword/wrongPasswordModal";
-import UserAlreadyExistModal from "../../ui/modal/userAlreadyExist/userAlreayExistModal";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {changeUserAlreadyExistFlag} from "../../redux/reducers/modalWindows/reducer";
+import {
+    registrateUserMethod,
+    useAppSelector,
+    selectModalWindowsFlags,
+    UserAlreadyExistModal,
+    useAppDispatch,
+    changeUserAlreadyExistFlag
+}   from '../../';
+
 
 interface Props{
 

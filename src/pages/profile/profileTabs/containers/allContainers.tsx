@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import {Link, useLocation} from "react-router-dom";
-import {getLastElemOfPath} from "../../../../utils/paramsMethods";
-import {getSelfContains} from "../../../../utils/fetchMethod";
 import {useEffect} from "react";
-import {useAppSelector} from "../../../../hooks/useAppSelector";
-import {selectContains} from "../../../../redux/reducers/contain/selector";
-import {useDispatch} from "react-redux";
-import {addContain} from "../../../../redux/reducers/contain/reducer";
-import {selectUserData} from "../../../../redux/reducers/user/selector";
-import {useAppDispatch} from "../../../../hooks/useAppDispatch";
-import {isArrayEmpty} from "../../../../utils/usefullMethods";
-import ContainersFindHeader from "./containersFindHeader/containersFindHeader";
-import ContainerDisplayingElem from "./ContainerDisplayingElem";
+import {
+    getLastElemOfPath,
+    getSelfContains,
+    useAppDispatch,
+    useAppSelector,
+    selectContains,
+    addContain,
+    selectUserData,
+    isArrayEmpty,
+    ContainersFindHeader,
+    ContainerDisplayingElem,
+}   from '../../../../';
+
 
 interface Props{
 

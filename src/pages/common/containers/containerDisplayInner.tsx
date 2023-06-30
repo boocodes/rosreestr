@@ -1,22 +1,30 @@
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
 import {Link, useLocation} from "react-router-dom";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import {selectUserData} from "../../../redux/reducers/user/selector";
-import {
-    selectContainClosedFlag,
-    selectContainNotFoundFlag,
-    selectContainViewPage
-} from "../../../redux/reducers/contain/selector";
-import {getBooleanFromTextBoolean} from "../../../utils/usefullMethods";
 import {useEffect, useState} from "react";
-import {getLastElemOfPath} from "../../../utils/paramsMethods";
-import ContainSettingsTab from "./containTabs/settingsTab/settingsTab";
-import ContainIssuesTab from "./containTabs/issuesTab/issuesTab";
-import ContainPullRequestsTab from "./pullRequestsTab/pullRequestsTab";
-import ContainCodeTab from "./containTabs/codeTab/codeTab";
-import Header from "../../../ui/header/header";
-import Footer from "../../../ui/footer/footer";
+
+
+
+import {
+    useAppSelector,
+    useAppDispatch,
+    selectUserData,
+    selectContainViewPage,
+    selectContainNotFoundFlag,
+    selectContainClosedFlag,
+    getBooleanFromTextBoolean,
+    getLastElemOfPath,
+    ContainSettingsTab,
+    ContainIssuesTab,
+    ContainPullRequestsTab,
+    ContainCodeTab,
+    Header,
+    Footer,
+}   from '../../../';
+
+
+
+
+
 interface Props{
 
 }
@@ -42,7 +50,7 @@ function DisplayingContainTabs(props:IDisplayingContainTabs){
 
 function ContainerDisplayInner(props:Props){
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const userData = useAppSelector(selectUserData);
     const containViewPage = useAppSelector(selectContainViewPage);

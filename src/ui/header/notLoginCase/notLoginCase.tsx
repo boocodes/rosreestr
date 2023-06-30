@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import ButtonLink from "../linkButton/button";
 import {Link} from "react-router-dom";
+import {
+    ButtonLink,
+}   from '../../../';
+
 
 interface Props{
 

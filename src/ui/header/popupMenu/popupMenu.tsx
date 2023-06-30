@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectUserData} from "../../redux/reducers/user/selector";
 import {Link} from "react-router-dom";
+import {
+        useAppSelector,
+        selectUserData,
+}   from '../../../';
 
 
 interface Props{
