@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import NavgiationWrapper from "./navigationWrapper";
-import NavigationWrapperDisplaying from "./navigationWrapperDisplaying";
-
+import {
+    NavgiationWrapper,
+    NavigationWrapperDisplaying,
+}   from '../../../../../';
 
 interface Props{
 

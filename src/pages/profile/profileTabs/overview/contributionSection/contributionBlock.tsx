@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import ContributionTable from "./contributionTable";
+
+import {
+    ContributionTable,
+}   from '../../../../../';
 
 
 interface Props{

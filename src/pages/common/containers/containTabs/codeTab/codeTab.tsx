@@ -1,15 +1,20 @@
 import styled from "styled-components";
-import CodeWindowImg from '../../../../../images/codeContain.png';
-import {useAppSelector} from "../../../../../hooks/useAppSelector";
-import {selectContainViewPage} from "../../../../../redux/reducers/contain/selector";
 import {useEffect, useRef, useState} from "react";
-import CodeDisplayingWrapper from "./codeDisplayingWrapper";
-import AddNewFilesModal from "./addNewFilesModal";
-import CreateNewFileModal from "./createNewFileModal";
 import CloseIcon from "../../../../../images/closeIcon.jpg";
-import SwitchBranchWrapper from "./switchBranch/switchBranchWrapper";
-import CreateNewBranchModal from "./modals/createNewBranchModal";
-import DisplayingCommitsList from "./displayingCommitsList";
+import {
+    useAppSelector,
+    selectContainViewPage,
+    CodeDisplayingWrapper,
+    AddNewFilesModal,
+    CreateNewFileModal,
+    SwitchBranchWrapper,
+    CreateNewBranchModal,
+    DisplayingCommitsList
+}   from '../../../../../';
+
+
+
+
 
 interface Props{
 

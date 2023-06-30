@@ -1,18 +1,21 @@
 
 import styled from "styled-components";
-import Header from "../../ui/header/header";
-import Footer from "../../ui/footer/footer";
 import {useState, useRef} from "react";
 import {useNavigate} from "react-router-dom";
-import {fetchMethod, loginUserMethod} from "../../utils/fetchMethod";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {changeUserAuthFlag, changeUserData} from "../../redux/reducers/user/reducer";
 import {Link} from "react-router-dom";
-import wrongPasswordModal from "../../ui/modal/wrongPassword/wrongPasswordModal";
-import {changeWrongPasswordOrLoginFlag} from "../../redux/reducers/modalWindows/reducer";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectModalWindowsFlags} from "../../redux/reducers/modalWindows/selector";
-import WrongPasswordModal from "../../ui/modal/wrongPassword/wrongPasswordModal";
+import {
+    fetchMethod,
+    loginUserMethod,
+    useAppDispatch,
+    changeUserAuthFlag,
+    changeUserData,
+    changeWrongPasswordOrLoginFlag,
+    useAppSelector,
+    selectModalWindowsFlags,
+    WrongPasswordModal,
+}   from '../../';
+
+
 
 interface Props{
 

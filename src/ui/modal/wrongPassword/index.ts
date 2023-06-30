@@ -1,0 +1,1 @@
+export {default as WrongPasswordModal} from './wrongPasswordModal';

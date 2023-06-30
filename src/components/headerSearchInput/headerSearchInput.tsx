@@ -1,13 +1,21 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {selectContains} from "../../redux/reducers/contain/selector";
-import {selectUserData} from "../../redux/reducers/user/selector";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {getSelfContains} from "../../utils/fetchMethod";
-import {addContain} from "../../redux/reducers/contain/reducer";
-import {isArrayEmpty} from "../../utils/usefullMethods";
 import {Link, useNavigate} from "react-router-dom";
+
+
+import {
+    useAppSelector,
+    selectContains,
+    selectUserData,
+    useAppDispatch,
+    getSelfContains,
+    addContain,
+    isArrayEmpty
+} from '../../';
+
+
+
+
 
 interface Props{
 

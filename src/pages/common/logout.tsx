@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {changeUserAuthFlag} from "../../redux/reducers/user/reducer";
+import {
+    useAppDispatch,
+    changeUserAuthFlag,
+}   from '../../';
 
 interface Props{
 

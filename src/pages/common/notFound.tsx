@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import Footer from "../../ui/footer/footer";
-import Header from "../../ui/header/header";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import {
+    Header,
+    Footer,
+}   from '../../';
 
 
 interface Props{

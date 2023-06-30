@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 import ActivityOfContainerInContainerList from "../../../../images/activityOfContainerInContainerList.png";
-import {getBooleanFromTextBoolean} from "../../../../utils/usefullMethods";
+import {
+    getBooleanFromTextBoolean,
+}   from '../../../../';
 
 
 interface IContainsList{

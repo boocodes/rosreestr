@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import {selectModalWindowsFlags} from "../../../redux/reducers/modalWindows/selector";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import {changeWrongPasswordOrLoginFlag} from "../../../redux/reducers/modalWindows/reducer";
-import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useState} from "react";
+import {
+    selectModalWindowsFlags,
+    useAppSelector,
+    changeWrongPasswordOrLoginFlag,
+    useAppDispatch
+}   from '../../../';
 
 
 interface Props{

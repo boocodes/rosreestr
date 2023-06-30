@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../../../hooks/useAppSelector";
-import {selectUserData} from "../../../../redux/reducers/user/selector";
 import {useRef} from "react";
-import {updateUserFields} from "../../../../utils/fetchMethod";
-import {useAppDispatch} from "../../../../hooks/useAppDispatch";
-import {changeUserData} from "../../../../redux/reducers/user/reducer";
+
+import {
+    useAppDispatch,
+    useAppSelector,
+    updateUserFields,
+    changeUserData,
+    selectUserData,
+}   from '../../../../';
 
 
 interface Props{

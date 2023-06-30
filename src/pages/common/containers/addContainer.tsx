@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import Header from "../../../ui/header/header";
-import Footer from "../../../ui/footer/footer";
-import NewContainerForm from "../../../components/addNewContainerForm/newContainerForm";
+import {
+    Header,
+    Footer,
+    NewContainerForm,
+}   from '../../../';
 
 
 interface Props{

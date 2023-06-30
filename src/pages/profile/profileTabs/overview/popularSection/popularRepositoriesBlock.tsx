@@ -1,13 +1,17 @@
 import styled from 'styled-components';
-import PopularContainerElemWrapper from "./popularContainerElemWrapper";
-import {useAppSelector} from "../../../../../hooks/useAppSelector";
-import {selectContains} from "../../../../../redux/reducers/contain/selector";
-import {selectUserData} from "../../../../../redux/reducers/user/selector";
-import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {useEffect} from "react";
-import {getSelfContains} from "../../../../../utils/fetchMethod";
-import {addContain} from "../../../../../redux/reducers/contain/reducer";
-import {getBooleanFromTextBoolean} from "../../../../../utils/usefullMethods";
+import {
+    useAppSelector,
+    selectContains,
+    selectUserData,
+    useAppDispatch,
+    getSelfContains,
+    addContain,
+    getBooleanFromTextBoolean,
+    PopularContainerElemWrapper
+}   from '../../../../../';
+
+
 
 interface Props{
 

@@ -1,8 +1,12 @@
 import styled from "styled-components";
-import {useAppSelector} from "../../../../../hooks/useAppSelector";
 import {useEffect, useState} from "react";
-import {selectContainViewPage} from "../../../../../redux/reducers/contain/selector";
-import {selectUserData} from "../../../../../redux/reducers/user/selector";
+import {
+    selectContainViewPage,
+    selectUserData,
+    useAppSelector,
+}   from '../../../../../';
+
+
 
 interface Props{
 

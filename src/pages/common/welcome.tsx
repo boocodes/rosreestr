@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-
-import Button from "../../ui/linkButton/button";
-import ButtonLink from "../../ui/linkButton/button";
-import Header from "../../ui/header/header";
-import Footer from "../../ui/footer/footer";
-
+import {
+    ButtonLink,
+    Header,
+    Footer,
+}   from '../../';
 
 interface Props{
 

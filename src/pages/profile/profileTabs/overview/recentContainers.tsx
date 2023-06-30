@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import PopularRepositioriesBlock from "./popularSection/popularRepositoriesBlock";
-import ContributionBlock from "./contributionSection/contributionBlock";
+import {
+    PopularRepositioriesBlock,
+    ContributionBlock,
+}   from '../../../../';
 
 
 
