@@ -6,8 +6,33 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: url("./../public/fonts/MullerBold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Muller';
+  src: url("./../public/fonts/MullerLight.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Muller';
+  src: url("./../public/fonts/MullerMedium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Muller';
+  src: url("./../public/fonts/MullerRegular.woff") format("woff");
+  font-weight: 400;
 }

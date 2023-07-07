@@ -1,0 +1,1 @@
+export {default as RegistrateButton} from './registrateButton';
