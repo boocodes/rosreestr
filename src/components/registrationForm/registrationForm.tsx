@@ -34,7 +34,6 @@ function RegistrationForm({changeRegistrationStep}:Props){
     const regionInputRef = useRef<HTMLSelectElement>(null);
     //
 
-    const userData = useSelector(getUserData);
     function handleSubmit(event:React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         if(!buttonActiveFlag) return;
