@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
-
+    getUserData
 }   from '../../';
+
 import {useEffect, useState, useRef} from "react";
 
 interface Props{
@@ -33,7 +34,7 @@ function RegistrationForm({changeRegistrationStep}:Props){
     const regionInputRef = useRef<HTMLSelectElement>(null);
     //
 
-
+    const userData = useSelector(getUserData);
     function handleSubmit(event:React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         if(!buttonActiveFlag) return;
@@ -43,9 +44,9 @@ function RegistrationForm({changeRegistrationStep}:Props){
             company: companyInputRef?.current?.value,
             region: regionInputRef?.current?.value,
         }
-        console.log(userDataFromFirstStepRegistrationForm);
-
     }
+
+
     function handleOnChange(){
         if(
             !!firstNameInputRef?.current?.value?.trim() &&
